@@ -40,6 +40,26 @@ public class BaseController {
     }
 
     @FXML
+    public void open_edit_player_data(){
+        try{
+            Stage primarystage = App.getstage();
+            setTheScene(primarystage);
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().
+                    getResource("player_data_stage.fxml")));
+            primarystage.setScene(new Scene(root, 600, 460));
+            Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
+            double x = (bounds.getMaxX() / 2) - 300;
+            double y = (bounds.getMaxY() / 2) - 200;
+            primarystage.setX(x);
+            primarystage.setY(y);
+            primarystage.show();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
     public void open_edit_player_inventory() throws IOException {
         Stage primarystage = App.getstage();
         setTheScene(primarystage);
@@ -78,26 +98,6 @@ public class BaseController {
     public void back_to_last_tab(){
         first_tab.setVisible(true);
         second_tab.setVisible(false);
-    }
-
-    @FXML
-    public void open_edit_player_data(){
-        try{
-            Stage primarystage = App.getstage();
-            setTheScene(primarystage);
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().
-                    getResource("player_data_stage.fxml")));
-            primarystage.setScene(new Scene(root, 600, 400));
-            Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
-            double x = (bounds.getMaxX() / 2) - 300;
-            double y = (bounds.getMaxY() / 2) - 200;
-            primarystage.setX(x);
-            primarystage.setY(y);
-            primarystage.show();
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
     }
 
     @FXML

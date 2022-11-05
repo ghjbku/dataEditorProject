@@ -6,4 +6,4 @@ runnable jar file can be found in the **target** folder, or you can compile it y
 
 current progress:
 
-![demo gif of the progress](https://media.discordapp.net/attachments/1038509324634435657/1038532635917557790/demo2.gif)
+![demo gif of the progress](https://media.discordapp.net/attachments/1038509324634435657/1038542292937613312/demo3.gif)

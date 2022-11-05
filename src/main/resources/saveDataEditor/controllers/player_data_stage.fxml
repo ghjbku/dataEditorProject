@@ -58,12 +58,12 @@
          <Label layoutX="280.0" layoutY="24.0" text="Comprehending Heavens:" />
          <TextField fx:id="breathing_qi" layoutX="73.0" layoutY="23.0" minHeight="-Infinity" prefHeight="20.0" prefWidth="190.0" promptText="Breathing qi level" />
          <TextField fx:id="sensing_qi" layoutX="65.0" layoutY="43.0" minHeight="-Infinity" prefHeight="20.0" prefWidth="198.0" promptText="Sensing qi level" />
-         <TextField fx:id="compr_qi" layoutX="108.0" layoutY="63.0" minHeight="-Infinity" prefHeight="20.0" prefWidth="155.0" promptText="Comprehending qi level" />
+         <TextField fx:id="comprehending_qi" layoutX="108.0" layoutY="63.0" minHeight="-Infinity" prefHeight="20.0" prefWidth="155.0" promptText="Comprehending qi level" />
          <TextField fx:id="cleansing_meridians" layoutX="114.0" layoutY="83.0" minHeight="-Infinity" prefHeight="20.0" prefWidth="149.0" promptText="Cleansing meridians level" />
          <TextField fx:id="building_foundation" layoutX="114.0" layoutY="103.0" minHeight="-Infinity" prefHeight="20.0" prefWidth="149.0" promptText="Building foundation level" />
          <TextField fx:id="core_form" layoutX="91.0" layoutY="123.0" minHeight="-Infinity" prefHeight="20.0" prefWidth="172.0" promptText="Core formation level" />
          <TextField fx:id="core_revolution" layoutX="91.0" layoutY="142.0" minHeight="-Infinity" prefHeight="20.0" prefWidth="172.0" promptText="Core revolution level" />
-         <TextField fx:id="comprehending_heaven" layoutX="420.0" layoutY="23.0" minHeight="-Infinity" prefHeight="20.0" prefWidth="148.0" promptText="Comprehending heavens" />
+         <TextField fx:id="comprehending_heavens" layoutX="420.0" layoutY="23.0" minHeight="-Infinity" prefHeight="20.0" prefWidth="148.0" promptText="Comprehending heavens" />
          <Label layoutX="280.0" layoutY="45.0" text="Soul Condensation:" />
          <TextField fx:id="soul_condensation" layoutX="385.0" layoutY="43.0" minHeight="-Infinity" prefHeight="20.0" prefWidth="183.0" promptText="Soul condensation level" />
          <Label layoutX="280.0" layoutY="66.0" text="Comprehending Emotions:" />

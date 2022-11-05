@@ -63,6 +63,43 @@ public class PlayerDataController {
     TextField talisman_level;
     //endregion
 
+    //region player cultivation
+    @FXML
+    TextField breathing_qi;
+    @FXML
+    TextField sensing_qi;
+    @FXML
+    TextField comprehending_qi;
+    @FXML
+    TextField cleansing_meridians;
+    @FXML
+    TextField building_foundation;
+    @FXML
+    TextField core_form;
+    @FXML
+    TextField core_revolution;
+    @FXML
+    TextField merging_with_dao;
+    @FXML
+    TextField comprehending_heavens;
+    @FXML
+    TextField soul_condensation;
+    @FXML
+    TextField comprehending_emotions;
+    @FXML
+    TextField severing_emotions;
+    @FXML
+    TextField cultivating_soul;
+    @FXML
+    TextField emergence;
+    @FXML
+    TextField returning_to_emptiness;
+    @FXML
+    TextField shedding;
+    @FXML
+    TextField returning_to_simplicity;
+    //endregion
+
     @FXML
     void initialize() {
         String filePath = App.getFilePath();
@@ -149,6 +186,46 @@ public class PlayerDataController {
         taming_level.setText(taming.toString());
         //talisman_level.setText(talisman.toString());
         //endregion
+
+        //region cultivation
+        Long breathing = (Long)((JSONArray)((JSONArray)data.get(1)).get(1)).get(0);
+        Long sensing = (Long)((JSONArray)((JSONArray)data.get(2)).get(1)).get(0);
+        Long compr_qi = (Long)((JSONArray)((JSONArray)data.get(3)).get(1)).get(0);
+        Long cleansing = (Long)((JSONArray)((JSONArray)data.get(4)).get(1)).get(0);
+        Long building = (Long)((JSONArray)((JSONArray)data.get(5)).get(1)).get(0);
+        Long core_f = (Long)((JSONArray)((JSONArray)data.get(6)).get(1)).get(0);
+        Long core_r = (Long)((JSONArray)((JSONArray)data.get(7)).get(1)).get(0);
+        Long compr_h = (Long)((JSONArray)((JSONArray)data.get(8)).get(1)).get(0);
+        Long soul_cond = (Long)((JSONArray)((JSONArray)data.get(9)).get(1)).get(0);
+        Long compr_emo = (Long)((JSONArray)((JSONArray)data.get(10)).get(1)).get(0);
+        Long severing = (Long)((JSONArray)((JSONArray)data.get(11)).get(1)).get(0);
+        Long cult_soul = (Long)((JSONArray)((JSONArray)data.get(12)).get(1)).get(0);
+        Long emerg = (Long)((JSONArray)((JSONArray)data.get(13)).get(1)).get(0);
+        Long return_e = (Long)((JSONArray)((JSONArray)data.get(14)).get(1)).get(0);
+        Long merging = (Long)((JSONArray)((JSONArray)data.get(15)).get(1)).get(0);
+        Long shed = (Long)((JSONArray)((JSONArray)data.get(16)).get(1)).get(0);
+        Long return_s = (Long)((JSONArray)((JSONArray)data.get(17)).get(1)).get(0);
+
+
+
+        breathing_qi.setText(breathing.toString());
+        sensing_qi.setText(sensing.toString());
+        comprehending_qi.setText(compr_qi.toString());
+        cleansing_meridians.setText(cleansing.toString());
+        building_foundation.setText(building.toString());
+        core_form.setText(core_f.toString());
+        core_revolution.setText(core_r.toString());
+        comprehending_heavens.setText(compr_h.toString());
+        soul_condensation.setText(soul_cond.toString());
+        comprehending_emotions.setText(compr_emo.toString());
+        severing_emotions.setText(severing.toString());
+        cultivating_soul.setText(cult_soul.toString());
+        emergence.setText(emerg.toString());
+        returning_to_emptiness.setText(return_e.toString());
+        merging_with_dao.setText(merging.toString());
+        shedding.setText(shed.toString());
+        returning_to_simplicity.setText(return_s.toString());
+        //endregion
     }
 
     private void readFile() {
@@ -182,6 +259,26 @@ public class PlayerDataController {
         ((JSONArray)((JSONArray)data.get(27)).get(22)).set(0,Long.valueOf(forging_level.getText()));
         ((JSONArray)((JSONArray)data.get(73)).get(22)).set(0,Long.valueOf(planting_level.getText()));
         ((JSONArray)((JSONArray)data.get(31)).get(22)).set(0,Long.valueOf(taming_level.getText()));
+        //endregion
+
+        //region cultivation
+        ((JSONArray)((JSONArray)data.get(1)).get(1)).set(0,Long.valueOf(breathing_qi.getText()));
+        ((JSONArray)((JSONArray)data.get(2)).get(1)).set(0,Long.valueOf(sensing_qi.getText()));
+        ((JSONArray)((JSONArray)data.get(3)).get(1)).set(0,Long.valueOf(comprehending_qi.getText()));
+        ((JSONArray)((JSONArray)data.get(4)).get(1)).set(0,Long.valueOf(cleansing_meridians.getText()));
+        ((JSONArray)((JSONArray)data.get(5)).get(1)).set(0,Long.valueOf(building_foundation.getText()));
+        ((JSONArray)((JSONArray)data.get(6)).get(1)).set(0,Long.valueOf(core_form.getText()));
+        ((JSONArray)((JSONArray)data.get(7)).get(1)).set(0,Long.valueOf(core_revolution.getText()));
+        ((JSONArray)((JSONArray)data.get(8)).get(1)).set(0,Long.valueOf(comprehending_heavens.getText()));
+        ((JSONArray)((JSONArray)data.get(9)).get(1)).set(0,Long.valueOf(soul_condensation.getText()));
+        ((JSONArray)((JSONArray)data.get(10)).get(1)).set(0,Long.valueOf(comprehending_emotions.getText()));
+        ((JSONArray)((JSONArray)data.get(11)).get(1)).set(0,Long.valueOf(severing_emotions.getText()));
+        ((JSONArray)((JSONArray)data.get(12)).get(1)).set(0,Long.valueOf(cultivating_soul.getText()));
+        ((JSONArray)((JSONArray)data.get(13)).get(1)).set(0,Long.valueOf(emergence.getText()));
+        ((JSONArray)((JSONArray)data.get(14)).get(1)).set(0,Long.valueOf(returning_to_emptiness.getText()));
+        ((JSONArray)((JSONArray)data.get(15)).get(1)).set(0,Long.valueOf(merging_with_dao.getText()));
+        ((JSONArray)((JSONArray)data.get(16)).get(1)).set(0,Long.valueOf(shedding.getText()));
+        ((JSONArray)((JSONArray)data.get(17)).get(1)).set(0,Long.valueOf(returning_to_simplicity.getText()));
         //endregion
 
         writeFile();

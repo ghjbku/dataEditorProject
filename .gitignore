@@ -1,0 +1,7 @@
+.idea/
+.git/
+target/classes/
+target/generated-sources/
+target/maven-status/
+target/maven-archiver/
+original-*.jar

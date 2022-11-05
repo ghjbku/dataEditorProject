@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="401.0" prefWidth="613.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="saveDataEditor.controllers.BaseController">
+   <children>
+      <ToolBar fx:id="first_tab" layoutY="2.0" prefHeight="35.0" prefWidth="613.0">
+         <items>
+            <Button mnemonicParsing="false" onAction="#next_tab" text="Next tab" />
+            <Button fx:id="side_button1" mnemonicParsing="false" onAction="#open_edit_player_data" text="Edit Player data" />
+            <Button fx:id="side_button11" mnemonicParsing="false" onAction="#open_edit_player_inventory" text="Edit Player inventory" />
+            <Button fx:id="time_calc_button" mnemonicParsing="false" onAction="#open_edit_player_sect" text="Edit Player sect" />
+            <Label onMouseEntered="#on_hover_version_num" onMouseExited="#on_exit_version_num" text="Version: 1.0.0" />
+         </items>
+      </ToolBar>
+      <ToolBar fx:id="second_tab" layoutY="-4.0" prefHeight="47.0" prefWidth="613.0" visible="false">
+         <items>
+            <Button mnemonicParsing="false" onAction="#back_to_last_tab" text="Back to last tab" />
+            <Button mnemonicParsing="false" text="Nothing here yet" />
+         </items>
+      </ToolBar>
+      <Button fx:id="exit_button" layoutX="569.0" layoutY="2.0" mnemonicParsing="false" onAction="#exit_button_processing" text="Exit" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0" />
+      <Label alignment="CENTER" layoutX="2.0" layoutY="49.0" prefHeight="35.0" prefWidth="613.0" text="Please do not try editing the sect before actually unlocking it! " textAlignment="CENTER" textFill="#9a0909" textOverrun="WORD_ELLIPSIS" wrapText="true">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="18.0" layoutY="114.0" prefHeight="121.0" prefWidth="578.0" text="Please exit the game before you set the new data, as the game will not read any changes from the file, so it will just overwrite whatever you change here!" textAlignment="CENTER" textFill="#9a0909" textOverrun="WORD_ELLIPSIS" wrapText="true">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="18.0" />
+         </font>
+      </Label>
+      <Pane fx:id="version_pane" layoutX="356.0" layoutY="37.0" opacity="0.93" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: gray;" visible="false">
+         <children>
+            <Label alignment="TOP_CENTER" layoutX="5.0" layoutY="6.0" prefHeight="191.0" prefWidth="189.0" style="-fx-background-color: black;" text="What's new:" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="23.0" />
+               </font>
+            </Label>
+            <Label layoutX="11.0" layoutY="53.0" prefHeight="47.0" prefWidth="180.0" text="&quot;Edit Player data&quot; option is available and functional" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

@@ -8,7 +8,8 @@ import javafx.scene.Scene;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import saveDataEditor.ItemEntities.StackableResources;
+import saveDataEditor.Data.StackableResources;
+import saveDataEditor.Data.Treasures;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -18,6 +19,7 @@ public class App extends Application {
     private static String filePath;
     private static String inventoryFilePath;
     private static StackableResources stackableResources;
+    private static Treasures treasures;
 
     private void setstage(Stage primaryStage) throws IOException {
         final int app_stage_width = 600;
@@ -38,6 +40,7 @@ public class App extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         stackableResources = new StackableResources();
+        treasures = new Treasures();
         primaryStage.initStyle(StageStyle.UNDECORATED);
         setstage(primaryStage);
     }
@@ -60,6 +63,10 @@ public class App extends Application {
 
     public static StackableResources getStackableResources() {
         return stackableResources;
+    }
+
+    public static Treasures getTreasures() {
+        return treasures;
     }
 
     public static void setFilePath(String path) {

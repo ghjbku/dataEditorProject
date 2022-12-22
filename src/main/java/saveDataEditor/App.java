@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import saveDataEditor.Data.SpiritFruits;
 import saveDataEditor.Data.StackableResources;
 import saveDataEditor.Data.Treasures;
 
@@ -20,6 +21,7 @@ public class App extends Application {
     private static String inventoryFilePath;
     private static StackableResources stackableResources;
     private static Treasures treasures;
+    private static SpiritFruits spiritFruits;
 
     private void setstage(Stage primaryStage) throws IOException {
         final int app_stage_width = 600;
@@ -41,6 +43,7 @@ public class App extends Application {
     public void start(Stage primaryStage) throws Exception {
         stackableResources = new StackableResources();
         treasures = new Treasures();
+        spiritFruits = new SpiritFruits();
         primaryStage.initStyle(StageStyle.UNDECORATED);
         setstage(primaryStage);
     }
@@ -68,6 +71,8 @@ public class App extends Application {
     public static Treasures getTreasures() {
         return treasures;
     }
+
+    public static SpiritFruits getSpiritFruits(){return spiritFruits;}
 
     public static void setFilePath(String path) {
         filePath = path;

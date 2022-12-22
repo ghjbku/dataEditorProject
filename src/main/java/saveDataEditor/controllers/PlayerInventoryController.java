@@ -156,16 +156,37 @@ public class PlayerInventoryController {
             Long amount = (Long) ((JSONArray) ((JSONArray) data.get(i)).get(1)).get(0);
             Long age = (Long) ((JSONArray) ((JSONArray) data.get(i)).get(3)).get(0);
             Double quality = Double.parseDouble(((JSONArray) ((JSONArray) data.get(i)).get(2)).get(0).toString());
+            String name ="";
+            Long price = 0L;
 
-            String name = App.getStackableResources().findResource(Math.toIntExact(id)) == null
-                    ? App.getTreasures().findResource(Math.toIntExact(id)) == null ?
-                    "item not in database yet" : App.getTreasures().findResource(Math.toIntExact(id)).getName()
-                    : App.getStackableResources().findResource(Math.toIntExact(id)).getName();
+            if(App.getStackableResources().findResource(Math.toIntExact(id)) != null) {
+                name = App.getStackableResources().findResource(Math.toIntExact(id)).getName();
+            }
+            else if(App.getTreasures().findResource(Math.toIntExact(id)) != null){
+                    name = App.getTreasures().findResource(Math.toIntExact(id)).getName();
+            }
+            else if(App.getSpiritFruits().findResource(Math.toIntExact(id)) != null){
+                name = App.getSpiritFruits().findResource(Math.toIntExact(id)).getName();
 
-            Long price = App.getStackableResources().findResource(Math.toIntExact(id)) == null
-                    ? App.getTreasures().findResource(Math.toIntExact(id)) == null ?
-                    0L : App.getTreasures().findResource(Math.toIntExact(id)).getPrice()
-                    : App.getStackableResources().findResource(Math.toIntExact(id)).getPrice();
+            }else{
+                name = "item not in database yet";
+            }
+
+
+
+            if(App.getStackableResources().findResource(Math.toIntExact(id)) == null){
+                if(App.getTreasures().findResource(Math.toIntExact(id)) == null){
+                    if(App.getSpiritFruits().findResource(Math.toIntExact(id)) == null){
+                        price=0L;
+                    }else{
+                        price = App.getSpiritFruits().findResource(Math.toIntExact(id)).getPrice();
+                    }
+                }else{
+                    price = App.getTreasures().findResource(Math.toIntExact(id)).getPrice();
+                }
+            }else{
+                price = App.getStackableResources().findResource(Math.toIntExact(id)).getPrice();
+            }
 
             System.out.println("id: " + id);
             System.out.println("amount: " + amount);

@@ -337,7 +337,7 @@ public class PlayerDataController {
         }
     }
 
-    private void writeFile() {
+    private void writeFile(boolean isSingular) {
         JSONObject obj = new JSONObject();
         obj.put("c2array", true);
         JSONArray arr = new JSONArray();
@@ -349,8 +349,11 @@ public class PlayerDataController {
 
         try (FileWriter file = new FileWriter(App.getFilePath())) {
             file.write(obj.toJSONString());
-            success_msg.setVisible(true);
-            success_msg2.setVisible(true);
+            if (isSingular) {
+                success_msg.setVisible(true);
+            } else {
+                success_msg2.setVisible(true);
+            }
             timerthing();
 
         } catch (IOException e) {
@@ -360,6 +363,7 @@ public class PlayerDataController {
 
     //it will hide the success message after 1 sec
     private void timerthing() {
+
         TimerTask task = new TimerTask() {
             public void run() {
                 success_msg.setVisible(false);
@@ -431,7 +435,7 @@ public class PlayerDataController {
         ((JSONArray) ((JSONArray) data.get(17)).get(1)).set(0, Long.valueOf(returning_to_simplicity.getText()));
         //endregion
 
-        writeFile();
+        writeFile(false);
     }
 
     @FXML
@@ -495,7 +499,7 @@ public class PlayerDataController {
                 return;
         }
 
-        writeFile();
+        writeFile(true);
     }
 
     @FXML

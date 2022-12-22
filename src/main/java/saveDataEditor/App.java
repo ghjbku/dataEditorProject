@@ -8,15 +8,16 @@ import javafx.scene.Scene;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import saveDataEditor.ItemEntities.StackableResources;
 
 import java.io.IOException;
-import java.nio.file.Path;
 import java.util.Objects;
-
 
 public class App extends Application {
     private static Stage primarystage;
     private static String filePath;
+    private static String inventoryFilePath;
+    private static StackableResources stackableResources;
 
     private void setstage(Stage primaryStage) throws IOException {
         final int app_stage_width = 600;
@@ -36,10 +37,10 @@ public class App extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        stackableResources = new StackableResources();
         primaryStage.initStyle(StageStyle.UNDECORATED);
         setstage(primaryStage);
     }
-
 
     public static void main(String[] args) {
         launch(args);
@@ -49,8 +50,23 @@ public class App extends Application {
         return primarystage;
     }
 
-    public static String getFilePath(){return filePath;}
-    public static void setFilePath(String path){
-        filePath =path;
+    public static String getFilePath() {
+        return filePath;
+    }
+
+    public static String getInventoryFilePath() {
+        return inventoryFilePath;
+    }
+
+    public static StackableResources getStackableResources() {
+        return stackableResources;
+    }
+
+    public static void setFilePath(String path) {
+        filePath = path;
+    }
+
+    public static void setInventoryFilePath(String path) {
+        inventoryFilePath = path;
     }
 }

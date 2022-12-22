@@ -3,9 +3,17 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="saveDataEditor.controllers.PlayerInventoryController">
+<AnchorPane prefHeight="460.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="saveDataEditor.controllers.PlayerInventoryController">
    <children>
       <Button layoutX="526.0" layoutY="11.0" mnemonicParsing="false" onAction="#exit_button_processing" prefHeight="37.0" prefWidth="60.0" text="Exit" />
-      <Button layoutX="443.0" layoutY="11.0" mnemonicParsing="false" onAction="#back_button_processing" prefHeight="37.0" prefWidth="73.0" text="Back" />
+      <Button layoutX="443.0" layoutY="8.0" mnemonicParsing="false" onAction="#back_button_processing" prefHeight="44.0" prefWidth="73.0" text="Back to menu" textAlignment="CENTER" wrapText="true" />
+      <Button layoutX="14.0" layoutY="17.0" mnemonicParsing="false" onAction="#open_folder" onMouseEntered="#show_help" onMouseExited="#disable_help" text="Open Save File" />
+      <Label fx:id="help_text_file_open" layoutX="14.0" layoutY="48.0" text="example path: E:\SteamLibrary\steamapps\common\...\save\0svwp.dat" visible="false" />
+      <Label fx:id="current_path_label" layoutX="117.0" layoutY="13.0" prefHeight="37.0" prefWidth="320.0" text="Current:" visible="false" wrapText="true" />
+      <Pane fx:id="data_pane" layoutX="10.0" layoutY="72.0" prefHeight="382.0" prefWidth="581.0" style="-fx-background-insets: 0 0 -1 0, -1, 1, 1; -fx-background-color: -fx-shadow-highlight-color,        -fx-outer-border,        -fx-inner-border,        -fx-body-color; -fx-background-radius: 3px, 3px, 2px, 1px;">
+         <children>
+            <Button layoutX="481.0" layoutY="343.0" mnemonicParsing="false" text="Save Inventory" />
+         </children></Pane>
+
    </children>
 </AnchorPane>

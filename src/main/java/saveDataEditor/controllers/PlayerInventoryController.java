@@ -14,6 +14,7 @@ import saveDataEditor.App;
 import java.io.*;
 
 public class PlayerInventoryController {
+    JSONArray sizeArray = null;
     JSONArray data = null;
     File playerData;
 
@@ -22,6 +23,8 @@ public class PlayerInventoryController {
     Label help_text_file_open;
     @FXML
     Label current_path_label;
+    @FXML
+    Label current_size_label;
     @FXML
     Pane data_pane;
     //endregion
@@ -87,6 +90,8 @@ public class PlayerInventoryController {
 
             JSONObject SaveFile = (JSONObject) parser.parse(reader);
             System.out.println(SaveFile);
+            sizeArray = (JSONArray) SaveFile.get("size");
+            current_size_label.setText("current size of the inventory: "+ sizeArray.get(0));
             data = (JSONArray) SaveFile.get("data");
 
         } catch (Exception e) {

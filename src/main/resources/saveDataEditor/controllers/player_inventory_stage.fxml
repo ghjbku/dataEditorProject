@@ -13,6 +13,7 @@
       <Pane fx:id="data_pane" layoutX="10.0" layoutY="72.0" prefHeight="382.0" prefWidth="581.0" style="-fx-background-insets: 0 0 -1 0, -1, 1, 1; -fx-background-color: -fx-shadow-highlight-color,        -fx-outer-border,        -fx-inner-border,        -fx-body-color; -fx-background-radius: 3px, 3px, 2px, 1px;">
          <children>
             <Button layoutX="481.0" layoutY="343.0" mnemonicParsing="false" text="Save Inventory" />
+            <Label fx:id="current_size_label" layoutX="14.0" layoutY="6.0" text="current size of the inventory:" />
          </children></Pane>
 
    </children>

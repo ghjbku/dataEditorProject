@@ -42,53 +42,66 @@
          <TextField fx:id="forging_level" layoutX="211.0" layoutY="29.0" minHeight="-Infinity" prefHeight="20.0" prefWidth="83.0" promptText="forging level" />
          <TextField fx:id="planting_level" layoutX="55.0" layoutY="57.0" minHeight="-Infinity" prefHeight="20.0" prefWidth="107.0" promptText="planting level" />
          <TextField fx:id="taming_level" layoutX="211.0" layoutY="57.0" minHeight="-Infinity" prefHeight="20.0" prefWidth="83.0" promptText="taming level" />
-         <TextField fx:id="talisman_level" layoutX="128.0" layoutY="87.0" minHeight="-Infinity" prefHeight="20.0" prefWidth="129.0" promptText="talisman crafting level" />
+         <TextField fx:id="talisman_level" disable="true" layoutX="128.0" layoutY="87.0" minHeight="-Infinity" prefHeight="20.0" prefWidth="129.0" promptText="talisman crafting level" />
       </Pane>
       <Label alignment="CENTER" layoutX="299.0" layoutY="5.0" prefHeight="17.0" prefWidth="279.0" style="-fx-background-color: darkgrey;" text="Player Attributes:" textAlignment="CENTER" />
       <Separator layoutX="298.0" layoutY="5.0" orientation="VERTICAL" prefHeight="154.0" prefWidth="0.0" />
       <Pane layoutX="3.0" layoutY="156.0" prefHeight="213.0" prefWidth="571.0">
-         <Label layoutX="3.0" layoutY="23.0" text="Breathing Qi:" />
          <Label alignment="CENTER" layoutY="6.0" prefHeight="17.0" prefWidth="574.0" style="-fx-background-color: darkgrey;" text="Cultivation techniques:" textAlignment="CENTER" />
-         <Label layoutX="3.0" layoutY="45.0" text="Sensing Qi:" />
-         <Label layoutX="3.0" layoutY="65.0" text="Comprehending Qi:" />
-         <Label layoutX="3.0" layoutY="85.0" text="Cleansing Meridians:" />
-         <Label layoutX="3.0" layoutY="105.0" text="Building Foundation:" />
-         <Label layoutX="3.0" layoutY="125.0" text="Core Formation:" />
-         <Label layoutX="2.0" layoutY="143.0" text="Core Revolution:" />
-         <Label layoutX="280.0" layoutY="24.0" text="Comprehending Heavens:" />
-         <TextField fx:id="breathing_qi" layoutX="73.0" layoutY="23.0" minHeight="-Infinity" prefHeight="20.0" prefWidth="190.0" promptText="Breathing qi level" />
-         <TextField fx:id="sensing_qi" layoutX="65.0" layoutY="43.0" minHeight="-Infinity" prefHeight="20.0" prefWidth="198.0" promptText="Sensing qi level" />
-         <TextField fx:id="comprehending_qi" layoutX="108.0" layoutY="63.0" minHeight="-Infinity" prefHeight="20.0" prefWidth="155.0" promptText="Comprehending qi level" />
-         <TextField fx:id="cleansing_meridians" layoutX="114.0" layoutY="83.0" minHeight="-Infinity" prefHeight="20.0" prefWidth="149.0" promptText="Cleansing meridians level" />
-         <TextField fx:id="building_foundation" layoutX="114.0" layoutY="103.0" minHeight="-Infinity" prefHeight="20.0" prefWidth="149.0" promptText="Building foundation level" />
-         <TextField fx:id="core_form" layoutX="91.0" layoutY="123.0" minHeight="-Infinity" prefHeight="20.0" prefWidth="172.0" promptText="Core formation level" />
-         <TextField fx:id="core_revolution" layoutX="91.0" layoutY="142.0" minHeight="-Infinity" prefHeight="20.0" prefWidth="172.0" promptText="Core revolution level" />
-         <TextField fx:id="comprehending_heavens" layoutX="420.0" layoutY="23.0" minHeight="-Infinity" prefHeight="20.0" prefWidth="148.0" promptText="Comprehending heavens" />
-         <Label layoutX="280.0" layoutY="45.0" text="Soul Condensation:" />
-         <TextField fx:id="soul_condensation" layoutX="385.0" layoutY="43.0" minHeight="-Infinity" prefHeight="20.0" prefWidth="183.0" promptText="Soul condensation level" />
-         <Label layoutX="280.0" layoutY="66.0" text="Comprehending Emotions:" />
-         <TextField fx:id="comprehending_emotions" layoutX="423.0" layoutY="63.0" minHeight="-Infinity" prefHeight="20.0" prefWidth="145.0" promptText="Comprehending emotions " />
-         <Label layoutX="280.0" layoutY="86.0" text="Severing Emotions:" />
-         <TextField fx:id="severing_emotions" layoutX="383.0" layoutY="83.0" minHeight="-Infinity" prefHeight="20.0" prefWidth="185.0" promptText="Severing emotions level" />
-         <Label layoutX="280.0" layoutY="106.0" text="Cultivating the soul:" />
-         <TextField fx:id="cultivating_soul" layoutX="387.0" layoutY="103.0" minHeight="-Infinity" prefHeight="20.0" prefWidth="181.0" promptText="Cultivating the soul level" />
-         <Label layoutX="280.0" layoutY="126.0" text="Emergence:" />
-         <TextField fx:id="emergence" layoutX="346.0" layoutY="122.0" minHeight="-Infinity" prefHeight="20.0" prefWidth="222.0" promptText="Emergence level" />
-         <Label layoutX="280.0" layoutY="144.0" text="Returning to emptiness:" />
-         <TextField fx:id="returning_to_emptiness" layoutX="411.0" layoutY="142.0" minHeight="-Infinity" prefHeight="20.0" prefWidth="157.0" promptText="Returning to emptiness level" />
-         <Label layoutX="2.0" layoutY="162.0" text="Merging with the Dao:" />
-         <TextField fx:id="merging_with_dao" layoutX="123.0" layoutY="161.0" minHeight="-Infinity" prefHeight="20.0" prefWidth="140.0" promptText="Merging with Dao level" />
-         <Label layoutX="3.0" layoutY="181.0" text="Shedding mortality:" />
-         <TextField fx:id="shedding" layoutX="110.0" layoutY="181.0" minHeight="-Infinity" prefHeight="20.0" prefWidth="153.0" promptText="Shedding mortality level" />
-         <Label layoutX="3.0" layoutY="201.0" text="Returning to simplicity:" />
-         <TextField fx:id="returning_to_simplicity" layoutX="126.0" layoutY="201.0" minHeight="-Infinity" prefHeight="20.0" prefWidth="137.0" promptText="Returning to simplicity" />
-         <Button layoutX="496.0" layoutY="183.0" mnemonicParsing="false" onAction="#save_data" prefHeight="37.0" prefWidth="73.0" text="Save Data" />
-         <Label fx:id="success_msg" layoutX="348.0" layoutY="183.0" prefHeight="37.0" prefWidth="147.0" style="-fx-background-color: gray;" text="Successfully overwritten the data!" textAlignment="CENTER" textFill="#00ee43" visible="false" wrapText="true">
+         <Button layoutX="496.0" layoutY="183.0" mnemonicParsing="false" onAction="#save_specific_data" prefHeight="37.0" prefWidth="73.0" text="Save Data" />
+         <Label fx:id="success_msg" layoutX="348.0" layoutY="184.0" prefHeight="37.0" prefWidth="147.0" style="-fx-background-color: gray;" text="Successfully overwritten the data!" textAlignment="CENTER" textFill="#00ee43" visible="false" wrapText="true">
             <font>
                <Font name="System Bold" size="12.0" />
             </font>
          </Label>
+         <ChoiceBox fx:id="ctech_cbox" layoutX="14.0" layoutY="29.0" prefWidth="150.0" />
+         <TextField fx:id="cbox_data" layoutX="174.0" layoutY="29.0" prefHeight="25.0" prefWidth="122.0" />
+         <Button layoutX="348.0" layoutY="29.0" mnemonicParsing="false" onAction="#show_all_techs" text="show all techniques instead" />
       </Pane>
+   </Pane>
+   <Pane fx:id="all_ctech" layoutY="158.0" prefHeight="225.0" prefWidth="600.0" style="-fx-background-color: rgb(224,224,224);" visible="false">
+      <Label layoutX="3.0" layoutY="23.0" text="Breathing Qi:" />
+      <Label fx:id="pane_show_all" alignment="CENTER" layoutX="4.0" layoutY="6.0" prefHeight="17.0" prefWidth="588.0" style="-fx-background-color: darkgrey;" text="Cultivation techniques:" textAlignment="CENTER" />
+      <Label layoutX="3.0" layoutY="45.0" text="Sensing Qi:" />
+      <Label layoutX="3.0" layoutY="65.0" text="Comprehending Qi:" />
+      <Label layoutX="3.0" layoutY="85.0" text="Cleansing Meridians:" />
+      <Label layoutX="3.0" layoutY="105.0" text="Building Foundation:" />
+      <Label layoutX="3.0" layoutY="125.0" text="Core Formation:" />
+      <Label layoutX="2.0" layoutY="143.0" text="Core Revolution:" />
+      <Label layoutX="280.0" layoutY="24.0" text="Comprehending Heavens:" />
+      <TextField fx:id="breathing_qi" layoutX="73.0" layoutY="23.0" minHeight="-Infinity" prefHeight="20.0" prefWidth="190.0" promptText="Breathing qi level" />
+      <TextField fx:id="sensing_qi" layoutX="65.0" layoutY="43.0" minHeight="-Infinity" prefHeight="20.0" prefWidth="198.0" promptText="Sensing qi level" />
+      <TextField fx:id="comprehending_qi" layoutX="108.0" layoutY="63.0" minHeight="-Infinity" prefHeight="20.0" prefWidth="155.0" promptText="Comprehending qi level" />
+      <TextField fx:id="cleansing_meridians" layoutX="114.0" layoutY="83.0" minHeight="-Infinity" prefHeight="20.0" prefWidth="149.0" promptText="Cleansing meridians level" />
+      <TextField fx:id="building_foundation" layoutX="114.0" layoutY="103.0" minHeight="-Infinity" prefHeight="20.0" prefWidth="149.0" promptText="Building foundation level" />
+      <TextField fx:id="core_form" layoutX="91.0" layoutY="123.0" minHeight="-Infinity" prefHeight="20.0" prefWidth="172.0" promptText="Core formation level" />
+      <TextField fx:id="core_revolution" layoutX="91.0" layoutY="142.0" minHeight="-Infinity" prefHeight="20.0" prefWidth="172.0" promptText="Core revolution level" />
+      <TextField fx:id="comprehending_heavens" layoutX="420.0" layoutY="23.0" minHeight="-Infinity" prefHeight="20.0" prefWidth="163.0" promptText="Comprehending heavens" />
+      <Label layoutX="280.0" layoutY="45.0" text="Soul Condensation:" />
+      <TextField fx:id="soul_condensation" layoutX="385.0" layoutY="43.0" minHeight="-Infinity" prefHeight="20.0" prefWidth="198.0" promptText="Soul condensation level" />
+      <Label layoutX="280.0" layoutY="66.0" text="Comprehending Emotions:" />
+      <TextField fx:id="comprehending_emotions" layoutX="423.0" layoutY="63.0" minHeight="-Infinity" prefHeight="20.0" prefWidth="160.0" promptText="Comprehending emotions " />
+      <Label layoutX="280.0" layoutY="86.0" text="Severing Emotions:" />
+      <TextField fx:id="severing_emotions" layoutX="383.0" layoutY="83.0" minHeight="-Infinity" prefHeight="20.0" prefWidth="200.0" promptText="Severing emotions level" />
+      <Label layoutX="280.0" layoutY="106.0" text="Cultivating the soul:" />
+      <TextField fx:id="cultivating_soul" layoutX="387.0" layoutY="103.0" minHeight="-Infinity" prefHeight="20.0" prefWidth="196.0" promptText="Cultivating the soul level" />
+      <Label layoutX="280.0" layoutY="126.0" text="Emergence:" />
+      <TextField fx:id="emergence" layoutX="346.0" layoutY="122.0" minHeight="-Infinity" prefHeight="20.0" prefWidth="237.0" promptText="Emergence level" />
+      <Label layoutX="280.0" layoutY="144.0" text="Returning to emptiness:" />
+      <TextField fx:id="returning_to_emptiness" layoutX="411.0" layoutY="142.0" minHeight="-Infinity" prefHeight="20.0" prefWidth="172.0" promptText="Returning to emptiness level" />
+      <Label layoutX="2.0" layoutY="162.0" text="Merging with the Dao:" />
+      <TextField fx:id="merging_with_dao" layoutX="123.0" layoutY="161.0" minHeight="-Infinity" prefHeight="20.0" prefWidth="140.0" promptText="Merging with Dao level" />
+      <Label layoutX="3.0" layoutY="181.0" text="Shedding mortality:" />
+      <TextField fx:id="shedding" layoutX="110.0" layoutY="181.0" minHeight="-Infinity" prefHeight="20.0" prefWidth="153.0" promptText="Shedding mortality level" />
+      <Label layoutX="3.0" layoutY="201.0" text="Returning to simplicity:" />
+      <TextField fx:id="returning_to_simplicity" layoutX="126.0" layoutY="201.0" minHeight="-Infinity" prefHeight="20.0" prefWidth="137.0" promptText="Returning to simplicity" />
+      <Button layoutX="525.0" layoutY="183.0" mnemonicParsing="false" onAction="#save_data" prefHeight="37.0" prefWidth="69.0" text="Save Data" />
+      <Label fx:id="success_msg2" layoutX="380.0" layoutY="183.0" prefHeight="37.0" prefWidth="141.0" style="-fx-background-color: gray;" text="Successfully overwritten the data!" textAlignment="CENTER" textFill="#00ee43" visible="false" wrapText="true">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Button layoutX="275.0" layoutY="186.0" mnemonicParsing="false" onAction="#hide_all_techs" text="show dropdown" />
    </Pane>
    <Label fx:id="current_label" layoutX="131.0" layoutY="9.0" prefHeight="37.0" prefWidth="304.0" text="current:" visible="false" wrapText="true" />
 </AnchorPane>

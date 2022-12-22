@@ -10,7 +10,7 @@
       <Button mnemonicParsing="false" onAction="#open_edit_player_data" text="Edit Player data" />
       <Button mnemonicParsing="false" onAction="#open_edit_player_inventory" text="Edit Player inventory" />
       <Button mnemonicParsing="false" onAction="#open_edit_player_sect" text="Edit Player sect" />
-      <Label onMouseEntered="#on_hover_version_num" onMouseExited="#on_exit_version_num" text="Version: 1.0.1" />
+      <Label onMouseEntered="#on_hover_version_num" onMouseExited="#on_exit_version_num" text="Version: 1.0.2" />
    </ToolBar>
    <ToolBar fx:id="second_tab" layoutY="2.0" prefHeight="35.0" prefWidth="613.0" visible="false">
       <Button mnemonicParsing="false" onAction="#back_to_last_tab" text="Back to last tab" />
@@ -27,18 +27,23 @@
          <Font name="Arial Rounded MT Bold" size="18.0" />
       </font>
    </Label>
-   <Pane fx:id="version_pane" layoutX="356.0" layoutY="37.0" opacity="0.93" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: gray;" visible="false">
-      <Label alignment="TOP_CENTER" layoutX="5.0" layoutY="6.0" prefHeight="191.0" prefWidth="189.0" style="-fx-background-color: black;" text="What's new:" textAlignment="CENTER" textFill="WHITE">
+   <Pane fx:id="version_pane" layoutX="356.0" layoutY="37.0" opacity="0.93" prefHeight="248.0" prefWidth="200.0" style="-fx-background-color: gray;" visible="false">
+      <Label alignment="TOP_CENTER" layoutX="5.0" layoutY="6.0" prefHeight="236.0" prefWidth="189.0" style="-fx-background-color: black;" text="What's new:" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="23.0" />
          </font>
       </Label>
-      <Label layoutX="11.0" layoutY="53.0" prefHeight="47.0" prefWidth="180.0" text="&quot;Edit Player data&quot; option is available and functional" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+      <Label layoutX="10.0" layoutY="195.0" prefHeight="47.0" prefWidth="180.0" text="&quot;Edit Player data&quot; option is available and functional" textAlignment="CENTER" textFill="WHITE" wrapText="true">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <Label layoutX="11.0" layoutY="113.0" prefHeight="47.0" prefWidth="180.0" text="&quot;Cultivation&quot; levels can be changed" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+      <Label layoutX="10.0" layoutY="140.0" prefHeight="47.0" prefWidth="180.0" text="&quot;Cultivation&quot; levels can be changed" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="10.0" layoutY="42.0" prefHeight="93.0" prefWidth="180.0" text="when editing cultivation levels, you can either use dropdown, or edit all of them" textAlignment="CENTER" textFill="#f2e5bf" wrapText="true">
          <font>
             <Font size="15.0" />
          </font>

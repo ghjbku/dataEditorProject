@@ -103,22 +103,52 @@ public class PlayerInventoryController {
     }
 
     @FXML
-    void edit_selected_item(){
+    void edit_selected_item() {
         ObservableList<Integer> selectedIndices = item_list.getSelectionModel().getSelectedIndices();
 
         for (Integer o : selectedIndices) {
             System.out.println(item_list.getItems().get(o));
-            inv_slot_label.setText("slot: #"+o);
-            edit_item_id_field.setText(""+inventoryArray.get(o).getId());
+            inv_slot_label.setText("slot: #" + o);
+            edit_item_id_field.setText("" + inventoryArray.get(o).getId());
 
             //should find it based on id, when all items are in the Data package
-            item_name.setText("name: "+ (inventoryArray.get(o)).getName());
-            stack_amount.setText(""+inventoryArray.get(o).getAmount());
-            treasure_quality.setText(""+inventoryArray.get(o).getQuality());
-            plant_age.setText(""+inventoryArray.get(o).getAge());
+            item_name.setText("name: " + (inventoryArray.get(o)).getName());
+            stack_amount.setText("" + inventoryArray.get(o).getAmount());
+            treasure_quality.setText("" + inventoryArray.get(o).getQuality());
+            plant_age.setText("" + inventoryArray.get(o).getAge());
         }
+    }
 
+    @FXML
+    public void saveItemData() {
+        if(!inv_slot_label.getText().equals("slot:")) {
+            System.out.println(String.format("%s , id: %s , %s, amount: %s, quality: %s , age: %s",
+                    inv_slot_label.getText().replaceFirst("#", ""), edit_item_id_field.getText(), item_name.getText(), stack_amount.getText(),
+                    treasure_quality.getText(), plant_age.getText()));
+            int i = Integer.parseInt(inv_slot_label.getText().replaceFirst("slot: #", ""));
+            //id
+            ((JSONArray) ((JSONArray) data.get(i)).get(0)).set(0, Long.valueOf(edit_item_id_field.getText()));
+            //amount
 
+            if (!stack_amount.getText().equals("null")) {
+                ((JSONArray) ((JSONArray) data.get(i)).get(1)).set(0, Long.valueOf(stack_amount.getText()));
+            }
+
+            System.out.println(plant_age.getText());
+            if (!plant_age.getText().equals("null")) {
+                System.out.println("not null");
+                ((JSONArray) ((JSONArray) data.get(i)).get(3)).set(0, Long.valueOf(plant_age.getText()));
+            }
+
+            System.out.println(treasure_quality.getText());
+            if (!treasure_quality.getText().equals("null")) {
+                System.out.println("not null");
+                ((JSONArray) ((JSONArray) data.get(i)).get(2)).set(0, Double.valueOf(treasure_quality.getText()));
+            }
+
+            System.out.println(data.get(i));
+            writeFile();
+        }
     }
 
     private void initScreen() {
@@ -156,35 +186,31 @@ public class PlayerInventoryController {
             Long amount = (Long) ((JSONArray) ((JSONArray) data.get(i)).get(1)).get(0);
             Long age = (Long) ((JSONArray) ((JSONArray) data.get(i)).get(3)).get(0);
             Double quality = Double.parseDouble(((JSONArray) ((JSONArray) data.get(i)).get(2)).get(0).toString());
-            String name ="";
+            String name = "";
             Long price = 0L;
 
-            if(App.getStackableResources().findResource(Math.toIntExact(id)) != null) {
+            if (App.getStackableResources().findResource(Math.toIntExact(id)) != null) {
                 name = App.getStackableResources().findResource(Math.toIntExact(id)).getName();
-            }
-            else if(App.getTreasures().findResource(Math.toIntExact(id)) != null){
-                    name = App.getTreasures().findResource(Math.toIntExact(id)).getName();
-            }
-            else if(App.getSpiritFruits().findResource(Math.toIntExact(id)) != null){
+            } else if (App.getTreasures().findResource(Math.toIntExact(id)) != null) {
+                name = App.getTreasures().findResource(Math.toIntExact(id)).getName();
+            } else if (App.getSpiritFruits().findResource(Math.toIntExact(id)) != null) {
                 name = App.getSpiritFruits().findResource(Math.toIntExact(id)).getName();
 
-            }else{
+            } else {
                 name = "item not in database yet";
             }
 
-
-
-            if(App.getStackableResources().findResource(Math.toIntExact(id)) == null){
-                if(App.getTreasures().findResource(Math.toIntExact(id)) == null){
-                    if(App.getSpiritFruits().findResource(Math.toIntExact(id)) == null){
-                        price=0L;
-                    }else{
+            if (App.getStackableResources().findResource(Math.toIntExact(id)) == null) {
+                if (App.getTreasures().findResource(Math.toIntExact(id)) == null) {
+                    if (App.getSpiritFruits().findResource(Math.toIntExact(id)) == null) {
+                        price = 0L;
+                    } else {
                         price = App.getSpiritFruits().findResource(Math.toIntExact(id)).getPrice();
                     }
-                }else{
+                } else {
                     price = App.getTreasures().findResource(Math.toIntExact(id)).getPrice();
                 }
-            }else{
+            } else {
                 price = App.getStackableResources().findResource(Math.toIntExact(id)).getPrice();
             }
 
@@ -198,10 +224,9 @@ public class PlayerInventoryController {
                 inventoryArray.add(new ResourceInformation(id, name, amount, price));
             } else if (id < 91) {
                 inventoryArray.add(new TreasureInformation(id, name, quality, amount, price));
-            }else if(id >=549 && id <562){
-                inventoryArray.add(new SpiritFruitInformation(id, name, age,quality, price));
-            }
-            else inventoryArray.add(new TreasureInformation(id, name, quality, amount, price));
+            } else if (id >= 549 && id < 562) {
+                inventoryArray.add(new SpiritFruitInformation(id, name, age, quality, price));
+            } else inventoryArray.add(new TreasureInformation(id, name, quality, amount, price));
 
             item_list.getItems().add(String.format("#%s , id: %s , name: %s , quality: %s , amount: %s , price: %s",
                     i, id, name, quality, amount, price));
@@ -212,13 +237,13 @@ public class PlayerInventoryController {
         JSONObject obj = new JSONObject();
         obj.put("c2array", true);
         JSONArray arr = new JSONArray();
-        arr.add(62);//amount of items in the inventory,needs to be properly calculated
+        arr.add(invSize);//amount of items in the inventory,needs to be properly calculated
         arr.add(21);//amount of properties per item, always 21
         arr.add(1);//number of rows in the json file, always 1
         obj.put("size", arr);
         obj.put("data", data);
 
-        try (FileWriter file = new FileWriter(App.getFilePath())) {
+        try (FileWriter file = new FileWriter(App.getInventoryFilePath())) {
             file.write(obj.toJSONString());
         } catch (IOException e) {
             e.printStackTrace();

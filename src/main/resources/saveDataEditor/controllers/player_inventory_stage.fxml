@@ -12,7 +12,7 @@
       <Label fx:id="current_path_label" layoutX="117.0" layoutY="13.0" prefHeight="37.0" prefWidth="320.0" text="Current:" visible="false" wrapText="true" />
       <Pane fx:id="data_pane" layoutX="10.0" layoutY="72.0" prefHeight="432.0" prefWidth="581.0" style="-fx-background-insets: 0 0 -1 0, -1, 1, 1; -fx-background-color: -fx-shadow-highlight-color,        -fx-outer-border,        -fx-inner-border,        -fx-body-color; -fx-background-radius: 3px, 3px, 2px, 1px;">
          <children>
-            <Button layoutX="481.0" layoutY="343.0" mnemonicParsing="false" text="Save Inventory" />
+            <Button layoutX="481.0" layoutY="343.0" mnemonicParsing="false" onAction="#saveItemData" text="Save Inventory" />
             <Label fx:id="current_size_label" layoutX="14.0" layoutY="6.0" text="current size of the inventory:" />
             <ListView fx:id="item_list" layoutX="14.0" layoutY="29.0" prefHeight="200.0" prefWidth="463.0" />
             <Button fx:id="edit_item_button" layoutX="481.0" layoutY="29.0" mnemonicParsing="false" onAction="#edit_selected_item" prefHeight="44.0" prefWidth="95.0" text="edit selected item" textAlignment="CENTER" wrapText="true" />

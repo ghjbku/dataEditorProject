@@ -10,7 +10,7 @@
       <Button mnemonicParsing="false" onAction="#open_edit_player_data" text="Edit Player data" />
       <Button mnemonicParsing="false" onAction="#open_edit_player_inventory" text="Edit Player inventory" />
       <Button mnemonicParsing="false" onAction="#open_edit_player_sect" text="Edit Player sect" />
-      <Label onMouseEntered="#on_hover_version_num" onMouseExited="#on_exit_version_num" text="Version: 1.0.2" />
+      <Label onMouseEntered="#on_hover_version_num" onMouseExited="#on_exit_version_num" text="Version: 1.0.3" />
    </ToolBar>
    <ToolBar fx:id="second_tab" layoutY="2.0" prefHeight="35.0" prefWidth="613.0" visible="false">
       <Button mnemonicParsing="false" onAction="#back_to_last_tab" text="Back to last tab" />
@@ -43,7 +43,7 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <Label layoutX="10.0" layoutY="42.0" prefHeight="93.0" prefWidth="180.0" text="when editing cultivation levels, you can either use dropdown, or edit all of them" textAlignment="CENTER" textFill="#f2e5bf" wrapText="true">
+      <Label layoutX="10.0" layoutY="42.0" prefHeight="93.0" prefWidth="180.0" text="existing items in player inventory are editable now" textAlignment="CENTER" textFill="#f2e5bf" wrapText="true">
          <font>
             <Font size="15.0" />
          </font>

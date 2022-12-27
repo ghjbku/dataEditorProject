@@ -20,6 +20,8 @@ import saveDataEditor.ItemEntities.TreasureInformation;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class PlayerInventoryController {
     JSONArray data = null;
@@ -36,6 +38,8 @@ public class PlayerInventoryController {
     Label current_size_label;
     @FXML
     Pane data_pane;
+    @FXML
+    Label success_msg;
     //endregion
 
     //region edit related objects
@@ -233,6 +237,17 @@ public class PlayerInventoryController {
         }
     }
 
+    private void timerthing() {
+
+        TimerTask task = new TimerTask() {
+            public void run() {
+                success_msg.setVisible(false);
+            }
+        };
+        Timer timer = new Timer("Timer");
+        timer.schedule(task, 1000L);
+    }
+
     private void writeFile() {
         JSONObject obj = new JSONObject();
         obj.put("c2array", true);
@@ -245,6 +260,8 @@ public class PlayerInventoryController {
 
         try (FileWriter file = new FileWriter(App.getInventoryFilePath())) {
             file.write(obj.toJSONString());
+            success_msg.setVisible(true);
+            timerthing();
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <AnchorPane prefHeight="530.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="saveDataEditor.controllers.PlayerInventoryController">
    <children>
@@ -30,6 +31,10 @@
                   <TextField fx:id="plant_age" layoutX="166.0" layoutY="106.0" />
                </children>
             </Pane>
+            <Label fx:id="success_msg" layoutX="398.0" layoutY="380.0" prefHeight="37.0" prefWidth="177.0" style="-fx-background-color: gray;" text="Successfully overwritten the data!" textAlignment="CENTER" textFill="#73ee36" visible="false" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
          </children></Pane>
 
    </children>

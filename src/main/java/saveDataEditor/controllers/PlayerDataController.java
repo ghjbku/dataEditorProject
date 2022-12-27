@@ -357,7 +357,7 @@ public class PlayerDataController {
             } else {
                 success_msg2.setVisible(true);
             }
-            timerthing();
+            successMsgTimer();
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -365,7 +365,7 @@ public class PlayerDataController {
     }
 
     //it will hide the success message after 1 sec
-    private void timerthing() {
+    private void successMsgTimer() {
 
         TimerTask task = new TimerTask() {
             public void run() {

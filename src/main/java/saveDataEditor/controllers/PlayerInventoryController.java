@@ -237,7 +237,7 @@ public class PlayerInventoryController {
         }
     }
 
-    private void timerthing() {
+    private void successMsgTimer() {
 
         TimerTask task = new TimerTask() {
             public void run() {
@@ -261,7 +261,7 @@ public class PlayerInventoryController {
         try (FileWriter file = new FileWriter(App.getInventoryFilePath())) {
             file.write(obj.toJSONString());
             success_msg.setVisible(true);
-            timerthing();
+            successMsgTimer();
         } catch (IOException e) {
             e.printStackTrace();
         }

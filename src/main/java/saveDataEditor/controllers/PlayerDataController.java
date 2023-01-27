@@ -146,6 +146,9 @@ public class PlayerDataController {
                 "soul_condensation", "comprehending_emotions", "severing_emotions", "cultivating_soul", "emergence",
                 "returning_to_emptiness", "shedding", "returning_to_simplicity");
 
+        ctech_cbox.setValue("breathing_qi");
+        onCboxChoice();
+
         ctech_cbox.setOnAction((event) -> {
                     System.out.println("   ChoiceBox.getValue(): " + ctech_cbox.getValue());
                     onCboxChoice();

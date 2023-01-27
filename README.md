@@ -10,5 +10,5 @@ current progress (V 1.0.3):
 ![demo gif of the progress](https://cdn.discordapp.com/attachments/1038509324634435657/1057292002405920778/demo1_0_3.gif)
 
 
-###The project is being developed in jdk8 now
+### The project is being developed in jdk8 now
 source: https://www.oracle.com/java/technologies/downloads/#java8-windows

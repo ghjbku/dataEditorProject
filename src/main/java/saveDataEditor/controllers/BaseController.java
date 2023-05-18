@@ -95,7 +95,7 @@ public class BaseController {
         setTheScene(primarystage);
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().
                 getResource("god_realm_stage.fxml")));
-        primarystage.setScene(new Scene(root, 600, 400));
+        primarystage.setScene(new Scene(root, 600, 530));
         Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
         double x = (bounds.getMaxX() / 2) - 300;
         double y = (bounds.getMaxY() / 2) - 200;

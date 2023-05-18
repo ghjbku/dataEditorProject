@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="530.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="saveDataEditor.controllers.PlayerInventoryController">
+<AnchorPane prefHeight="530.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="saveDataEditor.controllers.GodRealmEditorController">
    <children>
       <Button layoutX="526.0" layoutY="11.0" mnemonicParsing="false" onAction="#exit_button_processing" prefHeight="37.0" prefWidth="60.0" text="Exit" />
       <Button layoutX="443.0" layoutY="8.0" mnemonicParsing="false" onAction="#back_button_processing" prefHeight="44.0" prefWidth="73.0" text="Back to menu" textAlignment="CENTER" wrapText="true" />

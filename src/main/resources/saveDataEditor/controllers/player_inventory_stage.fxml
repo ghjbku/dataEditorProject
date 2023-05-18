@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="530.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="saveDataEditor.controllers.PlayerInventoryController">
+<AnchorPane prefHeight="530.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="saveDataEditor.controllers.PlayerInventoryController">
    <children>
       <Button layoutX="526.0" layoutY="11.0" mnemonicParsing="false" onAction="#exit_button_processing" prefHeight="37.0" prefWidth="60.0" text="Exit" />
       <Button layoutX="443.0" layoutY="8.0" mnemonicParsing="false" onAction="#back_button_processing" prefHeight="44.0" prefWidth="73.0" text="Back to menu" textAlignment="CENTER" wrapText="true" />
@@ -13,22 +13,25 @@
       <Label fx:id="current_path_label" layoutX="117.0" layoutY="13.0" prefHeight="37.0" prefWidth="320.0" text="Current:" visible="false" wrapText="true" />
       <Pane fx:id="data_pane" layoutX="10.0" layoutY="72.0" prefHeight="432.0" prefWidth="581.0" style="-fx-background-insets: 0 0 -1 0, -1, 1, 1; -fx-background-color: -fx-shadow-highlight-color,        -fx-outer-border,        -fx-inner-border,        -fx-body-color; -fx-background-radius: 3px, 3px, 2px, 1px;">
          <children>
-            <Button layoutX="481.0" layoutY="343.0" mnemonicParsing="false" onAction="#saveItemData" text="Save Inventory" />
+            <Button layoutX="460.0" layoutY="343.0" mnemonicParsing="false" onAction="#saveItemData" text="Save Inventory" />
             <Label fx:id="current_size_label" layoutX="14.0" layoutY="6.0" text="current size of the inventory:" />
             <ListView fx:id="item_list" layoutX="14.0" layoutY="29.0" prefHeight="200.0" prefWidth="463.0" />
-            <Button fx:id="edit_item_button" layoutX="481.0" layoutY="29.0" mnemonicParsing="false" onAction="#edit_selected_item" prefHeight="44.0" prefWidth="95.0" text="edit selected item" textAlignment="CENTER" wrapText="true" />
+            <Button fx:id="edit_item_button" alignment="CENTER" contentDisplay="CENTER" ellipsisString="" graphicTextGap="1.0" layoutX="481.0" layoutY="29.0" mnemonicParsing="false" onAction="#edit_selected_item" prefHeight="60.0" prefWidth="95.0" text="edit selected item" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
+               <font>
+                  <Font size="12.0" />
+               </font></Button>
             <Pane layoutX="14.0" layoutY="235.0" prefHeight="129.0" prefWidth="463.0">
                <children>
                   <Label fx:id="inv_slot_label" layoutX="10.0" text="slot:" />
                   <Label layoutX="14.0" layoutY="23.0" text="ID:" />
                   <TextField fx:id="edit_item_id_field" layoutX="36.0" layoutY="19.0" />
                   <Label layoutX="14.0" layoutY="47.0" text="Amount (only for stackable items!!):" />
-                  <TextField fx:id="stack_amount" layoutX="209.0" layoutY="43.0" />
+                  <TextField fx:id="stack_amount" layoutX="235.0" layoutY="43.0" />
                   <Label layoutX="14.0" layoutY="77.0" text="Quality(For forged items!!):" />
-                  <TextField fx:id="treasure_quality" layoutX="165.0" layoutY="73.0" />
+                  <TextField fx:id="treasure_quality" layoutX="185.0" layoutY="73.0" />
                   <Label fx:id="item_name" layoutX="185.0" prefHeight="17.0" prefWidth="210.0" text="name: " wrapText="true" />
-                  <Label layoutX="10.0" layoutY="110.0" text="Age (Only for spirit fruits!!)" />
-                  <TextField fx:id="plant_age" layoutX="166.0" layoutY="106.0" />
+                  <Label layoutX="10.0" layoutY="110.0" text="Age (Only for spirit fruits!!):" />
+                  <TextField fx:id="plant_age" layoutX="186.0" layoutY="106.0" />
                </children>
             </Pane>
             <Label fx:id="success_msg" layoutX="398.0" layoutY="380.0" prefHeight="37.0" prefWidth="177.0" style="-fx-background-color: gray;" text="Successfully overwritten the data!" textAlignment="CENTER" textFill="#73ee36" visible="false" wrapText="true">

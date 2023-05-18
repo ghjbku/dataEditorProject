@@ -24,7 +24,7 @@ public class App extends Application {
     private static SpiritFruits spiritFruits;
 
     private void setstage(Stage primaryStage) throws IOException {
-        final int app_stage_width = 600;
+        final int app_stage_width = 613;
         final int app_stage_height = 400;
 
         primarystage = primaryStage;

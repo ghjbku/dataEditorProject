@@ -20,7 +20,7 @@
       <Button mnemonicParsing="false" onAction="#open_god_realm_editor" text="God realm editor" />
    </ToolBar>
    <Button layoutX="569.0" layoutY="2.0" mnemonicParsing="false" onAction="#exit_button_processing" text="Exit" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0" />
-   <Label alignment="CENTER" layoutX="2.0" layoutY="49.0" prefHeight="35.0" prefWidth="613.0" text="Please do not try editing the sect before actually unlocking it! " textAlignment="CENTER" textFill="#9a0909" textOverrun="WORD_ELLIPSIS" wrapText="true">
+   <Label alignment="CENTER" layoutX="2.0" layoutY="49.0" prefHeight="53.0" prefWidth="614.0" text="Please do not try editing the sect or the God Realm data before actually unlocking it! " textAlignment="CENTER" textFill="#9a0909" textOverrun="WORD_ELLIPSIS" wrapText="true">
       <font>
          <Font name="Arial Rounded MT Bold" size="18.0" />
       </font>

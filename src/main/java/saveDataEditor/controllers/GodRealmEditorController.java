@@ -11,7 +11,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
+import jsonParser.JSONParser;
 import saveDataEditor.App;
 import saveDataEditor.ItemEntities.ItemEntity;
 import saveDataEditor.ItemEntities.ResourceInformation;
@@ -26,7 +26,7 @@ import java.util.TimerTask;
 public class GodRealmEditorController {
     JSONArray data = null;
     ArrayList<ItemEntity> inventoryArray = new ArrayList<>();
-    long invSize = 0;
+    double invSize = 0;
     File playerData;
 
     //region basic fxml data
@@ -65,7 +65,7 @@ public class GodRealmEditorController {
     @FXML
     void initialize() {
         String filePath = App.getFilePath();
-        if (!(filePath == null)) {
+        if (filePath != null) {
             playerData = new File(filePath);
             initScreen();
         }
@@ -139,7 +139,7 @@ public class GodRealmEditorController {
 
             JSONObject SaveFile = (JSONObject) parser.parse(reader);
             System.out.println(SaveFile);
-            invSize = (long) ((JSONArray) SaveFile.get("size")).get(0);
+            invSize = (double) ((JSONArray) SaveFile.get("size")).get(0);
             current_size_label.setText("current size of the inventory: " + invSize);
             data = (JSONArray) SaveFile.get("data");
 

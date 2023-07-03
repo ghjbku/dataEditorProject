@@ -115,7 +115,7 @@ public class PlayerDataController {
     @FXML
     void initialize() {
         String filePath = App.getFilePath();
-        if (!(filePath == null)) {
+        if (filePath != null) {
             playerData = new File(filePath);
             initScreen();
         }

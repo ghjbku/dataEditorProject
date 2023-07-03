@@ -1,23 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="401.0" prefWidth="613.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="saveDataEditor.controllers.BaseController">
+<AnchorPane prefHeight="401.0" prefWidth="613.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="saveDataEditor.controllers.BaseController">
    <ToolBar fx:id="first_tab" layoutY="2.0" prefHeight="35.0" prefWidth="613.0">
       <Button mnemonicParsing="false" onAction="#next_tab" text="Next tab" />
       <Button mnemonicParsing="false" onAction="#open_edit_player_data" text="Edit Player data" />
       <Button mnemonicParsing="false" onAction="#open_edit_player_inventory" text="Edit Player inventory" />
       <Button mnemonicParsing="false" onAction="#open_edit_player_sect" text="Edit Player sect" />
-      <Label onMouseEntered="#on_hover_version_num" onMouseExited="#on_exit_version_num" text="Version: 1.0.3" />
+      <Label alignment="CENTER" onMouseEntered="#on_hover_version_num" onMouseExited="#on_exit_version_num" prefHeight="18.0" prefWidth="96.0" text="Version: 1.0.4" />
    </ToolBar>
    <ToolBar fx:id="second_tab" layoutY="2.0" prefHeight="35.0" prefWidth="613.0" visible="false">
       <Button mnemonicParsing="false" onAction="#back_to_last_tab" text="Back to last tab" />
-      <Button mnemonicParsing="false" text="Nothing here yet" />
+      <Button mnemonicParsing="false" onAction="#open_god_realm_editor" text="God realm editor" />
    </ToolBar>
    <Button layoutX="569.0" layoutY="2.0" mnemonicParsing="false" onAction="#exit_button_processing" text="Exit" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0" />
-   <Label alignment="CENTER" layoutX="2.0" layoutY="49.0" prefHeight="35.0" prefWidth="613.0" text="Please do not try editing the sect before actually unlocking it! " textAlignment="CENTER" textFill="#9a0909" textOverrun="WORD_ELLIPSIS" wrapText="true">
+   <Label alignment="CENTER" layoutX="2.0" layoutY="49.0" prefHeight="53.0" prefWidth="614.0" text="Please do not try editing the sect or the God Realm data before actually unlocking it! " textAlignment="CENTER" textFill="#9a0909" textOverrun="WORD_ELLIPSIS" wrapText="true">
       <font>
          <Font name="Arial Rounded MT Bold" size="18.0" />
       </font>
@@ -33,17 +36,17 @@
             <Font size="23.0" />
          </font>
       </Label>
-      <Label layoutX="10.0" layoutY="195.0" prefHeight="47.0" prefWidth="180.0" text="&quot;Edit Player data&quot; option is available and functional" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+      <Label layoutX="10.0" layoutY="195.0" prefHeight="47.0" prefWidth="180.0" text="&quot;Cultivation&quot; levels can be changed" textAlignment="CENTER" textFill="WHITE" wrapText="true">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <Label layoutX="10.0" layoutY="140.0" prefHeight="47.0" prefWidth="180.0" text="&quot;Cultivation&quot; levels can be changed" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+      <Label layoutX="10.0" layoutY="140.0" prefHeight="47.0" prefWidth="180.0" text="existing items in player inventory are editable now" textAlignment="CENTER" textFill="WHITE" wrapText="true">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <Label layoutX="10.0" layoutY="42.0" prefHeight="93.0" prefWidth="180.0" text="existing items in player inventory are editable now" textAlignment="CENTER" textFill="#f2e5bf" wrapText="true">
+      <Label layoutX="10.0" layoutY="48.0" prefHeight="86.0" prefWidth="180.0" text="God realm data editor tab is added and can be accessed by clicking on the &quot;Next tab&quot; button" textAlignment="CENTER" textFill="#f2e5bf" wrapText="true">
          <font>
             <Font size="15.0" />
          </font>

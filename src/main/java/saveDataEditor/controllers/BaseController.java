@@ -90,6 +90,21 @@ public class BaseController {
     }
 
     @FXML
+    public void open_god_realm_editor() throws IOException {
+        Stage primarystage = App.getstage();
+        setTheScene(primarystage);
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().
+                getResource("god_realm_stage.fxml")));
+        primarystage.setScene(new Scene(root, 600, 530));
+        Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
+        double x = (bounds.getMaxX() / 2) - 300;
+        double y = (bounds.getMaxY() / 2) - 200;
+        primarystage.setX(x);
+        primarystage.setY(y);
+        primarystage.show();
+    }
+
+    @FXML
     public void next_tab(){
         first_tab.setVisible(false);
         second_tab.setVisible(true);

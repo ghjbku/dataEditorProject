@@ -182,7 +182,7 @@ public class PlayerInventoryController {
         }
     }
 
-    //((JSONArray) ((JSONArray) data.get(5)).get(22)).get(0).toString()
+    //((jsonParser.JSONArray) ((jsonParser.JSONArray) data.get(5)).get(22)).get(0).toString()
     //ItemInformation itemInformation = new ItemInformation();
     private void fillInventoryList() {
         for (int i = 0; i < invSize; i++) {

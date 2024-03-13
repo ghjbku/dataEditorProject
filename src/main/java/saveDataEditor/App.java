@@ -52,7 +52,7 @@ public class App extends Application {
         launch(args);
     }
 
-    public static Stage getstage() {
+    public static Stage getStage() {
         return primarystage;
     }
 

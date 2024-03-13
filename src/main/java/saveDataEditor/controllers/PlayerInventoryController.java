@@ -62,9 +62,16 @@ public class PlayerInventoryController {
     //endregion
 
 
+    /**
+     * Will set the filePath if the inventory editor window has been opened before, and the software was not closed since then
+     * <p>
+     * If the filepath exists, then initialize/re-initialize the screen
+     */
     @FXML
     void initialize() {
+
         String filePath = App.getInventoryFilePath();
+
         if (!(filePath == null)) {
             playerData = new File(filePath);
             initScreen();
@@ -73,30 +80,47 @@ public class PlayerInventoryController {
 
     @FXML
     public void exit_button_processing() {
+
         System.exit(0);
     }
 
+    /**
+     * Will change the scene back to the main screen
+     */
     @FXML
     public void back_button_processing() {
+
         Stage stage = App.getStage();
         stage.setScene(BaseController.getScene());
         stage.show();
     }
 
+    /**
+     * Will show the help text on hover of the fileChooser button
+     */
     @FXML
     void show_help() {
+
         help_text_file_open.setVisible(true);
     }
 
     @FXML
     void disable_help() {
+
         help_text_file_open.setVisible(false);
     }
 
+    /**
+     * Opens a file selector window to let the user select a save file
+     * <p>
+     * After the user clicks "open", save the file path for later and initialize the screen
+     */
     @FXML
     void open_folder() {
+
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open 0svwp.dat");
+
         try {
             playerData = fileChooser.showOpenDialog(App.getStage());
             App.setInventoryFilePath(playerData.getPath());
@@ -106,67 +130,84 @@ public class PlayerInventoryController {
         }
     }
 
+    /**
+     * After the user clicks "Edit this item", it will copy over the data from the selected item into the data-editing textFields
+     * <p>
+     * so the user can edit the <b>id</b>, <b>amount</b>, <b>quality</b> and <b>age</b> of the item
+     */
     @FXML
     void edit_selected_item() {
+
         ObservableList<Integer> selectedIndices = item_list.getSelectionModel().getSelectedIndices();
 
-        for (Integer o : selectedIndices) {
-            System.out.println(item_list.getItems().get(o));
-            inv_slot_label.setText("slot: #" + o);
-            edit_item_id_field.setText("" + inventoryArray.get(o).getId());
+        for (Integer indexOfItem : selectedIndices) {
+            System.out.println(item_list.getItems().get(indexOfItem));
+            inv_slot_label.setText("slot: #" + indexOfItem);
+            edit_item_id_field.setText("" + inventoryArray.get(indexOfItem).getId());
 
             //should find it based on id, when all items are in the Data package
-            item_name.setText("name: " + (inventoryArray.get(o)).getName());
-            stack_amount.setText("" + inventoryArray.get(o).getAmount());
-            treasure_quality.setText("" + inventoryArray.get(o).getQuality());
-            plant_age.setText("" + inventoryArray.get(o).getAge());
+            item_name.setText("name: " + (inventoryArray.get(indexOfItem)).getName());
+            stack_amount.setText("" + inventoryArray.get(indexOfItem).getAmount());
+            treasure_quality.setText("" + inventoryArray.get(indexOfItem).getQuality());
+            plant_age.setText("" + inventoryArray.get(indexOfItem).getAge());
         }
     }
 
+    /**
+     * If there is an item selected for editing, find the correct column/member of the <b>data</b> variable with the index of the item <p>
+     * and overwrite the corresponding value if the data-editing textField for that value is not null
+     */
     @FXML
-    public void saveItemData() {
+    public void save_item_data() {
+
         if(!inv_slot_label.getText().equals("slot:")) {
+
             System.out.println(String.format("%s , id: %s , %s, amount: %s, quality: %s , age: %s",
-                    inv_slot_label.getText().replaceFirst("#", ""), edit_item_id_field.getText(), item_name.getText(), stack_amount.getText(),
-                    treasure_quality.getText(), plant_age.getText()));
-            int i = Integer.parseInt(inv_slot_label.getText().replaceFirst("slot: #", ""));
+                inv_slot_label.getText().replaceFirst("#", ""), edit_item_id_field.getText(), item_name.getText(), stack_amount.getText(),
+                treasure_quality.getText(), plant_age.getText()));
+
+            int itemId = Integer.parseInt(inv_slot_label.getText().replaceFirst("slot: #", ""));
+
             //id
-            ((JSONArray) ((JSONArray) data.get(i)).get(0)).set(0, Long.valueOf(edit_item_id_field.getText()));
+            ((JSONArray) ((JSONArray) data.get(itemId)).get(0)).set(0, Long.valueOf(edit_item_id_field.getText()));
 
-            //amount
             if (!stack_amount.getText().equals("null")) {
-                ((JSONArray) ((JSONArray) data.get(i)).get(1)).set(0, Double.valueOf(stack_amount.getText()));
+                ((JSONArray) ((JSONArray) data.get(itemId)).get(1)).set(0, Double.valueOf(stack_amount.getText()));
             }
 
-            System.out.println(plant_age.getText());
             if (!plant_age.getText().equals("null")) {
-                System.out.println("not null");
-                ((JSONArray) ((JSONArray) data.get(i)).get(3)).set(0, Long.valueOf(plant_age.getText()));
+                ((JSONArray) ((JSONArray) data.get(itemId)).get(3)).set(0, Long.valueOf(plant_age.getText()));
             }
 
-            System.out.println(treasure_quality.getText());
             if (!treasure_quality.getText().equals("null")) {
-                System.out.println("not null");
-                ((JSONArray) ((JSONArray) data.get(i)).get(2)).set(0, Double.valueOf(treasure_quality.getText()));
+                ((JSONArray) ((JSONArray) data.get(itemId)).get(2)).set(0, Double.valueOf(treasure_quality.getText()));
             }
 
-            System.out.println(data.get(i));
             writeFile();
         }
     }
 
     private void initScreen() {
+
         setPathLabel(playerData.getPath());
         readFile();
         fillInventoryList();
     }
 
     private void setPathLabel(String filePath) {
+
         current_path_label.setText("current: " + filePath);
         current_path_label.setVisible(true);
     }
 
+    /**
+     * the method will read the data from the saveFile and initialize the variables:
+     * @invSize how many items are in the player inventory
+     * @data the data of all items in the inventory
+     * @example_json {"size":[1,3,1],"data":[ [[31],[1.0E39],[0]] ]} , where the prefix consists of [amount of items, fields in an item, number of rows in the json]
+     */
     private void readFile() {
+
         JSONParser parser = new JSONParser();
 
         try (Reader reader = new FileReader(playerData.getPath())) {
@@ -182,22 +223,26 @@ public class PlayerInventoryController {
         }
     }
 
-    //((jsonParser.JSONArray) ((jsonParser.JSONArray) data.get(5)).get(22)).get(0).toString()
-    //ItemInformation itemInformation = new ItemInformation();
+    /**
+     * the method will run through the saveFile and fill the scrolling frame called inventoryArray with every item found in the player's inventory
+     */
     private void fillInventoryList() {
+
         for (int i = 0; i < invSize; i++) {
-            Long id = (Long) ((JSONArray) ((JSONArray) data.get(i)).get(0)).get(0);
+            long id = (Long) ((JSONArray) ((JSONArray) data.get(i)).get(0)).get(0);
             Object amountToConvert = ((JSONArray) ((JSONArray) data.get(i)).get(1)).get(0);
-            Double amount = 0d;
+            double amount = 0d;
+
             if(amountToConvert.getClass().getName().contains("Long")){
                 amount = ((Long)amountToConvert).doubleValue();
             }else if (amountToConvert.getClass().getName().contains("Double")){
                 amount = (Double) amountToConvert;
             }
-            Long age = (Long) ((JSONArray) ((JSONArray) data.get(i)).get(3)).get(0);
-            Double quality = Double.parseDouble(((JSONArray) ((JSONArray) data.get(i)).get(2)).get(0).toString());
+
+            long age = (Long) ((JSONArray) ((JSONArray) data.get(i)).get(3)).get(0);
+            double quality = Double.parseDouble(((JSONArray) ((JSONArray) data.get(i)).get(2)).get(0).toString());
             String name = "";
-            Long price = 0L;
+            long price = 0L;
 
             if (App.getStackableResources().findResource(Math.toIntExact(id)) != null) {
                 name = App.getStackableResources().findResource(Math.toIntExact(id)).getName();
@@ -205,7 +250,6 @@ public class PlayerInventoryController {
                 name = App.getTreasures().findResource(Math.toIntExact(id)).getName();
             } else if (App.getSpiritFruits().findResource(Math.toIntExact(id)) != null) {
                 name = App.getSpiritFruits().findResource(Math.toIntExact(id)).getName();
-
             } else {
                 name = "item not in database yet";
             }
@@ -254,18 +298,23 @@ public class PlayerInventoryController {
         timer.schedule(task, 1000L);
     }
 
+    /**
+     * the method will update the saveFile with the new data
+     */
     private void writeFile() {
-        JSONObject obj = new JSONObject();
-        obj.put("c2array", true);
-        JSONArray arr = new JSONArray();
-        arr.add(invSize);//amount of items in the inventory,needs to be properly calculated
-        arr.add(21);//amount of properties per item, always 21
-        arr.add(1);//number of rows in the json file, always 1
-        obj.put("size", arr);
-        obj.put("data", data);
+
+        JSONObject saveFile = new JSONObject();
+        saveFile.put("c2array", true);
+
+        JSONArray jsonPrefix = new JSONArray();
+        jsonPrefix.add(invSize);//amount of items in the inventory,needs to be properly calculated
+        jsonPrefix.add(21);//amount of properties per item, always 21
+        jsonPrefix.add(1);//number of rows in the json file, always 1
+        saveFile.put("size", jsonPrefix);
+        saveFile.put("data", data);
 
         try (FileWriter file = new FileWriter(App.getInventoryFilePath())) {
-            file.write(obj.toJSONString());
+            file.write(saveFile.toJSONString());
             success_msg.setVisible(true);
             successMsgTimer();
         } catch (IOException e) {

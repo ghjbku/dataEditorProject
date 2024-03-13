@@ -12,6 +12,9 @@ import java.util.TimerTask;
 
 public class FileManipulation {
 
+    /**
+     * the method will fetch the playerdata from saveFile
+     */
     public static JSONArray readFile(File playerData) {
 
         JSONArray data = null;
@@ -27,13 +30,13 @@ public class FileManipulation {
             e.printStackTrace();
         }
 
-        return  data;
+        return data;
     }
 
     /**
-     * the method will update the saveFile with the new data
+     * the method will update the inventory saveFile with the new data
      */
-    public static void writeFile(long invSize,JSONArray data,Label success_msg) {
+    public static void writeFile(long invSize, JSONArray data, Label success_msg) {
 
         JSONObject saveFile = new JSONObject();
         saveFile.put("c2array", true);
@@ -54,7 +57,10 @@ public class FileManipulation {
         }
     }
 
-    public static void writeFile(JSONArray data, boolean isSingular, Label success_msg,Label success_msg2) {
+    /**
+     * the method will update the player data saveFile with the new data
+     */
+    public static void writeFile(JSONArray data, boolean isSingular, Label success_msg, Label success_msg2) {
 
         JSONObject obj = new JSONObject();
         obj.put("c2array", true);
@@ -72,13 +78,18 @@ public class FileManipulation {
             } else {
                 success_msg2.setVisible(true);
             }
-            successMsgTimer(success_msg,success_msg2);
+            successMsgTimer(success_msg, success_msg2);
 
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+    /**
+     * success message display for inventory scene
+     *
+     * @param success_msg label on the inventory scene
+     */
     private static void successMsgTimer(Label success_msg) {
 
         TimerTask task = new TimerTask() {
@@ -90,8 +101,13 @@ public class FileManipulation {
         timer.schedule(task, 1000L);
     }
 
-    //it will hide the success message after 1 sec
-    private static void successMsgTimer(Label success_msg,Label success_msg2) {
+    /**
+     * success message display for the player data scene
+     *
+     * @param success_msg  label on the player data scene
+     * @param success_msg2 label on the player data scene
+     */
+    private static void successMsgTimer(Label success_msg, Label success_msg2) {
 
         TimerTask task = new TimerTask() {
             public void run() {

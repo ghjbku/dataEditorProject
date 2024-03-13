@@ -5,6 +5,15 @@ project to help with modifying save data in Xiuzhen idle (https://store.steampow
 runnable jar file can be found in the **target** folder, or you can compile it yourself if you feel like it :)
 you will need to open the **"run editor.bat"** file (or use the command: **java -jar saveDataEditor-versionNumber-SNAPSHOT.jar**)
 
+if you dont want to use the bat file, and it does not autolaunch the software when you doubleclick the jar file, follow these steps:
+- press the key combination: win+R
+- write "regedit" and press enter
+- look for this path HKEY_CLASSES_ROOT\jarfile\shell\open\command (it should be the very first folder)
+- right click on default and click modify
+  ![image](https://github.com/ghjbku/dataEditorProject/assets/22707282/268ec3dd-2e51-4c27-a613-003e265df2be)
+- modify the path so it is jre 1.8
+
+
 current progress (V 1.0.4):
 - added initial tab for god realm
 - Editing player inventory slots (adding new one is not possible yet, only by editing an existing item's id)

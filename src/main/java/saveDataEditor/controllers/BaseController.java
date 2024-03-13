@@ -33,7 +33,7 @@ public class BaseController {
     }
 
     @FXML
-    public void exit_button_processing(){
+    public void exit_button_processing() {
 
         System.exit(0);
     }
@@ -43,22 +43,21 @@ public class BaseController {
     }
 
     @FXML
-    public void open_edit_player_data(){
+    public void open_edit_player_data() {
 
-        try{
+        try {
             Stage primaryStage = App.getStage();
             setTheScene(primaryStage);
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().
                     getResource("player_data_stage.fxml")));
             primaryStage.setScene(new Scene(root, WIDTH, PLAYERDATA_HEIGHT));
             Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
-            double x = (bounds.getMaxX() / 2) - (int)(WIDTH/2);
-            double y = (bounds.getMaxY() / 2) - (int)(PLAYERDATA_HEIGHT/2);
+            double x = (bounds.getMaxX() / 2) - (int) (WIDTH / 2);
+            double y = (bounds.getMaxY() / 2) - (int) (PLAYERDATA_HEIGHT / 2);
             primaryStage.setX(x);
             primaryStage.setY(y);
             primaryStage.show();
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -72,8 +71,8 @@ public class BaseController {
                 getResource("player_inventory_stage.fxml")));
         primaryStage.setScene(new Scene(root, WIDTH, INV_HEIGHT));
         Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
-        double x = (bounds.getMaxX() / 2) - (int)(WIDTH/2);
-        double y = (bounds.getMaxY() / 2) - (int)(PLAYERDATA_HEIGHT/2);
+        double x = (bounds.getMaxX() / 2) - (int) (WIDTH / 2);
+        double y = (bounds.getMaxY() / 2) - (int) (PLAYERDATA_HEIGHT / 2);
         primaryStage.setX(x);
         primaryStage.setY(y);
         primaryStage.show();
@@ -88,8 +87,8 @@ public class BaseController {
                 getResource("player_sect_stage.fxml")));
         primaryStage.setScene(new Scene(root, WIDTH, PLAYERDATA_HEIGHT));
         Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
-        double x = (bounds.getMaxX() / 2) - (int)(WIDTH/2);
-        double y = (bounds.getMaxY() / 2) - (int)(PLAYERDATA_HEIGHT/2);
+        double x = (bounds.getMaxX() / 2) - (int) (WIDTH / 2);
+        double y = (bounds.getMaxY() / 2) - (int) (PLAYERDATA_HEIGHT / 2);
         primaryStage.setX(x);
         primaryStage.setY(y);
         primaryStage.show();
@@ -104,34 +103,35 @@ public class BaseController {
                 getResource("god_realm_stage.fxml")));
         primaryStage.setScene(new Scene(root, WIDTH, INV_HEIGHT));
         Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
-        double x = (bounds.getMaxX() / 2) - (int)(WIDTH/2);
-        double y = (bounds.getMaxY() / 2) - (int)(PLAYERDATA_HEIGHT/2);
+        double x = (bounds.getMaxX() / 2) - (int) (WIDTH / 2);
+        double y = (bounds.getMaxY() / 2) - (int) (PLAYERDATA_HEIGHT / 2);
         primaryStage.setX(x);
         primaryStage.setY(y);
         primaryStage.show();
     }
 
     @FXML
-    public void next_tab(){
+    public void next_tab() {
 
         first_tab.setVisible(false);
         second_tab.setVisible(true);
     }
+
     @FXML
-    public void back_to_last_tab(){
+    public void back_to_last_tab() {
 
         first_tab.setVisible(true);
         second_tab.setVisible(false);
     }
 
     @FXML
-    public void on_hover_version_num(){
+    public void on_hover_version_num() {
 
         version_pane.setVisible(true);
     }
 
     @FXML
-    public void on_exit_version_num(){
+    public void on_exit_version_num() {
 
         version_pane.setVisible(false);
     }

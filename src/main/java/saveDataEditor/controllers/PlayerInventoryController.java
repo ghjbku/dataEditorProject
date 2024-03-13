@@ -18,6 +18,7 @@ import saveDataEditor.ItemEntities.ResourceInformation;
 import saveDataEditor.ItemEntities.SpiritFruitInformation;
 import saveDataEditor.ItemEntities.TreasureInformation;
 
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Timer;
@@ -160,11 +161,11 @@ public class PlayerInventoryController {
     @FXML
     public void save_item_data() {
 
-        if(!inv_slot_label.getText().equals("slot:")) {
+        if (!inv_slot_label.getText().equals("slot:")) {
 
-            System.out.println(String.format("%s , id: %s , %s, amount: %s, quality: %s , age: %s",
-                inv_slot_label.getText().replaceFirst("#", ""), edit_item_id_field.getText(), item_name.getText(), stack_amount.getText(),
-                treasure_quality.getText(), plant_age.getText()));
+            System.out.printf("%s , id: %s , %s, amount: %s, quality: %s , age: %s%n",
+                    inv_slot_label.getText().replaceFirst("#", ""), edit_item_id_field.getText(), item_name.getText(), stack_amount.getText(),
+                    treasure_quality.getText(), plant_age.getText());
 
             int itemId = Integer.parseInt(inv_slot_label.getText().replaceFirst("slot: #", ""));
 
@@ -202,6 +203,7 @@ public class PlayerInventoryController {
 
     /**
      * the method will read the data from the saveFile and initialize the variables:
+     *
      * @invSize how many items are in the player inventory
      * @data the data of all items in the inventory
      * @example_json {"size":[1,3,1],"data":[ [[31],[1.0E39],[0]] ]} , where the prefix consists of [amount of items, fields in an item, number of rows in the json]
@@ -223,7 +225,7 @@ public class PlayerInventoryController {
         }
     }
 
-    private void refreshInventory(){
+    private void refreshInventory() {
         item_list.getItems().clear();
         inv_slot_label.setText("slot:");
         edit_item_id_field.setText("");
@@ -244,16 +246,16 @@ public class PlayerInventoryController {
             Object amountToConvert = ((JSONArray) ((JSONArray) data.get(i)).get(1)).get(0);
             double amount = 0d;
 
-            if(amountToConvert.getClass().getName().contains("Long")){
-                amount = ((Long)amountToConvert).doubleValue();
-            }else if (amountToConvert.getClass().getName().contains("Double")){
+            if (amountToConvert.getClass().getName().contains("Long")) {
+                amount = ((Long) amountToConvert).doubleValue();
+            } else if (amountToConvert.getClass().getName().contains("Double")) {
                 amount = (Double) amountToConvert;
             }
 
             long age = (Long) ((JSONArray) ((JSONArray) data.get(i)).get(3)).get(0);
             double quality = Double.parseDouble(((JSONArray) ((JSONArray) data.get(i)).get(2)).get(0).toString());
-            String name = "";
-            long price = 0L;
+            String name;
+            long price;
 
             if (App.getStackableResources().findResource(Math.toIntExact(id)) != null) {
                 name = App.getStackableResources().findResource(Math.toIntExact(id)).getName();

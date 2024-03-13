@@ -78,7 +78,7 @@ public class PlayerInventoryController {
 
     @FXML
     public void back_button_processing() {
-        Stage stage = App.getstage();
+        Stage stage = App.getStage();
         stage.setScene(BaseController.getScene());
         stage.show();
     }
@@ -98,7 +98,7 @@ public class PlayerInventoryController {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open 0svwp.dat");
         try {
-            playerData = fileChooser.showOpenDialog(App.getstage());
+            playerData = fileChooser.showOpenDialog(App.getStage());
             App.setInventoryFilePath(playerData.getPath());
             initScreen();
         } catch (Exception e) {
@@ -135,7 +135,7 @@ public class PlayerInventoryController {
             //amount
 
             if (!stack_amount.getText().equals("null")) {
-                ((JSONArray) ((JSONArray) data.get(i)).get(1)).set(0, Long.valueOf(stack_amount.getText()));
+                ((JSONArray) ((JSONArray) data.get(i)).get(1)).set(0, Double.valueOf(stack_amount.getText()));
             }
 
             System.out.println(plant_age.getText());
@@ -187,7 +187,7 @@ public class PlayerInventoryController {
     private void fillInventoryList() {
         for (int i = 0; i < invSize; i++) {
             Long id = (Long) ((JSONArray) ((JSONArray) data.get(i)).get(0)).get(0);
-            Long amount = (Long) ((JSONArray) ((JSONArray) data.get(i)).get(1)).get(0);
+            Double amount = (Double) ((JSONArray) ((JSONArray) data.get(i)).get(1)).get(0);
             Long age = (Long) ((JSONArray) ((JSONArray) data.get(i)).get(3)).get(0);
             Double quality = Double.parseDouble(((JSONArray) ((JSONArray) data.get(i)).get(2)).get(0).toString());
             String name = "";

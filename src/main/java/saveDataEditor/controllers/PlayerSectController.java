@@ -25,7 +25,7 @@ public class PlayerSectController {
 
     @FXML
     public void back_button_processing() {
-        Stage stage = App.getstage();
+        Stage stage = App.getStage();
         stage.setScene(BaseController.getScene());
         stage.show();
     }

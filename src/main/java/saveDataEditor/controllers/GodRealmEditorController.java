@@ -78,7 +78,7 @@ public class GodRealmEditorController {
 
     @FXML
     public void back_button_processing() {
-        Stage stage = App.getstage();
+        Stage stage = App.getStage();
         stage.setScene(BaseController.getScene());
         stage.show();
     }
@@ -98,7 +98,7 @@ public class GodRealmEditorController {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open 0save.dat");
         try {
-            playerData = fileChooser.showOpenDialog(App.getstage());
+            playerData = fileChooser.showOpenDialog(App.getStage());
             App.setFilePath(playerData.getPath());
             initScreen();
         } catch (Exception e) {

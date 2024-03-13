@@ -42,7 +42,7 @@ public class BaseController {
     @FXML
     public void open_edit_player_data(){
         try{
-            Stage primarystage = App.getstage();
+            Stage primarystage = App.getStage();
             setTheScene(primarystage);
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().
                     getResource("player_data_stage.fxml")));
@@ -61,7 +61,7 @@ public class BaseController {
 
     @FXML
     public void open_edit_player_inventory() throws IOException {
-        Stage primarystage = App.getstage();
+        Stage primarystage = App.getStage();
         setTheScene(primarystage);
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().
                 getResource("player_inventory_stage.fxml")));
@@ -76,7 +76,7 @@ public class BaseController {
 
     @FXML
     public void open_edit_player_sect() throws IOException {
-        Stage primarystage = App.getstage();
+        Stage primarystage = App.getStage();
         setTheScene(primarystage);
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().
                 getResource("player_sect_stage.fxml")));
@@ -91,7 +91,7 @@ public class BaseController {
 
     @FXML
     public void open_god_realm_editor() throws IOException {
-        Stage primarystage = App.getstage();
+        Stage primarystage = App.getStage();
         setTheScene(primarystage);
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().
                 getResource("god_realm_stage.fxml")));

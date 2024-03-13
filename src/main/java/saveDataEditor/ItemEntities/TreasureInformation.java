@@ -4,11 +4,11 @@ public class TreasureInformation implements ItemEntity {
     private long id;
     private String name;
     private Double quality;
-    private Long amount;
+    private Double amount;
     private Long price;
     private Long age;
 
-    public TreasureInformation(long id, String name, Double quality, Long amount, Long price) {
+    public TreasureInformation(long id, String name, Double quality, Double amount, Long price) {
         this.id = id;
         this.name = name;
         this.quality = quality;
@@ -28,11 +28,11 @@ public class TreasureInformation implements ItemEntity {
         return quality;
     }
 
-    public Long getAmount() {
+    public Double getAmount() {
         return amount;
     }
 
-    public void setAmount(Long amount) {
+    public void setAmount(Double amount) {
         this.amount = amount;
     }
 

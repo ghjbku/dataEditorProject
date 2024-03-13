@@ -3,7 +3,7 @@ package saveDataEditor.ItemEntities;
 public class SpiritFruitInformation implements ItemEntity{
     private long id;
     private String name;
-    private Long amount;
+    private Double amount;
     private Long price;
     private Long age;
     private Double quality;
@@ -25,11 +25,11 @@ public class SpiritFruitInformation implements ItemEntity{
         return this.name == null ? "not known" : name;
     }
 
-    public Long getAmount() {
+    public Double getAmount() {
         return amount;
     }
 
-    public void setAmount(Long amount) {
+    public void setAmount(Double amount) {
         this.amount = amount;
     }
 

@@ -132,8 +132,8 @@ public class PlayerInventoryController {
             int i = Integer.parseInt(inv_slot_label.getText().replaceFirst("slot: #", ""));
             //id
             ((JSONArray) ((JSONArray) data.get(i)).get(0)).set(0, Long.valueOf(edit_item_id_field.getText()));
-            //amount
 
+            //amount
             if (!stack_amount.getText().equals("null")) {
                 ((JSONArray) ((JSONArray) data.get(i)).get(1)).set(0, Double.valueOf(stack_amount.getText()));
             }
@@ -187,7 +187,14 @@ public class PlayerInventoryController {
     private void fillInventoryList() {
         for (int i = 0; i < invSize; i++) {
             Long id = (Long) ((JSONArray) ((JSONArray) data.get(i)).get(0)).get(0);
-            Double amount = (Double) ((JSONArray) ((JSONArray) data.get(i)).get(1)).get(0);
+            Object amountToConvert = ((JSONArray) ((JSONArray) data.get(i)).get(1)).get(0);
+            Double amount = 0d;
+            if(amountToConvert.getClass().getName() == "java.lang.Long"){
+                amount = ((Long)amountToConvert).doubleValue();
+            }else if (amountToConvert.getClass().getName() == "java.lang.Double"){
+                amount = (Double) amountToConvert;
+            }
+            System.out.println(amountToConvert.getClass().getName());
             Long age = (Long) ((JSONArray) ((JSONArray) data.get(i)).get(3)).get(0);
             Double quality = Double.parseDouble(((JSONArray) ((JSONArray) data.get(i)).get(2)).get(0).toString());
             String name = "";

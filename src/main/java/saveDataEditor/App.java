@@ -23,17 +23,18 @@ public class App extends Application {
     private static Treasures treasures;
     private static SpiritFruits spiritFruits;
 
+    private static final int WIDTH = 600;
+    private static final int HEIGHT = 460;
+
     private void setStage(Stage primaryStage) throws IOException {
-        final int app_stage_width = 613;
-        final int app_stage_height = 400;
 
         App.primaryStage = primaryStage;
 
         Parent root = FXMLLoader.load(Objects.requireNonNull(this.getClass().getResource("base.fxml")));
-        App.primaryStage.setScene(new Scene(root, app_stage_width, app_stage_height));
+        App.primaryStage.setScene(new Scene(root, WIDTH, HEIGHT));
         Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
-        double x = (bounds.getMaxX() / 2) - 300;
-        double y = (bounds.getMaxY() / 2) - 200;
+        double x = (bounds.getMaxX() / 2) - (int)(WIDTH/2);
+        double y = (bounds.getMaxY() / 2) - (int)(HEIGHT/2);
         App.primaryStage.setX(x);
         App.primaryStage.setY(y);
         App.primaryStage.show();
@@ -41,6 +42,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+
         stackableResources = new StackableResources();
         treasures = new Treasures();
         spiritFruits = new SpiritFruits();
@@ -49,38 +51,47 @@ public class App extends Application {
     }
 
     public static void main(String[] args) {
+
         launch(args);
     }
 
     public static Stage getStage() {
+
         return primaryStage;
     }
 
     public static String getFilePath() {
+
         return filePath;
     }
 
     public static String getInventoryFilePath() {
+
         return inventoryFilePath;
     }
 
     public static StackableResources getStackableResources() {
+
         return stackableResources;
     }
 
     public static Treasures getTreasures() {
+
         return treasures;
     }
 
     public static SpiritFruits getSpiritFruits(){
+
         return spiritFruits;
     }
 
     public static void setFilePath(String path) {
+
         filePath = path;
     }
 
     public static void setInventoryFilePath(String path) {
+
         inventoryFilePath = path;
     }
 }

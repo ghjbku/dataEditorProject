@@ -1,1 +1,1 @@
-java -jar ./saveDataEditor-1.0.3-SNAPSHOT.jar
+java -jar ./saveDataEditor-1.0.4-SNAPSHOT.jar

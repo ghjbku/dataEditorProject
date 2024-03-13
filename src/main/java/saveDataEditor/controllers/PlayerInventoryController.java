@@ -189,12 +189,11 @@ public class PlayerInventoryController {
             Long id = (Long) ((JSONArray) ((JSONArray) data.get(i)).get(0)).get(0);
             Object amountToConvert = ((JSONArray) ((JSONArray) data.get(i)).get(1)).get(0);
             Double amount = 0d;
-            if(amountToConvert.getClass().getName() == "java.lang.Long"){
+            if(amountToConvert.getClass().getName().contains("Long")){
                 amount = ((Long)amountToConvert).doubleValue();
-            }else if (amountToConvert.getClass().getName() == "java.lang.Double"){
+            }else if (amountToConvert.getClass().getName().contains("Double")){
                 amount = (Double) amountToConvert;
             }
-            System.out.println(amountToConvert.getClass().getName());
             Long age = (Long) ((JSONArray) ((JSONArray) data.get(i)).get(3)).get(0);
             Double quality = Double.parseDouble(((JSONArray) ((JSONArray) data.get(i)).get(2)).get(0).toString());
             String name = "";

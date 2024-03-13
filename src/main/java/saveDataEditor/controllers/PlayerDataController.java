@@ -12,11 +12,12 @@ import jsonParser.JSONParser;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import saveDataEditor.App;
+import saveDataEditor.Data.FileManipulation;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileReader;
+import java.io.Reader;
 import java.text.DecimalFormat;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class PlayerDataController {
     JSONArray data = null;
@@ -114,6 +115,7 @@ public class PlayerDataController {
 
     @FXML
     void initialize() {
+
         String filePath = App.getFilePath();
         if (filePath != null) {
             playerData = new File(filePath);
@@ -122,19 +124,32 @@ public class PlayerDataController {
     }
 
     private void initScreen() {
-        setPathLabel(playerData.getPath());
-        readFile();
-        setGuiData();
-        initCBox();
+
+        try {
+            data = FileManipulation.readFile(playerData);
+
+            if (data == null) {
+                throw new Exception("couldn't fetch data from the save file");
+            } else {
+                setPathLabel(playerData.getPath());
+                setGuiData();
+                initCBox();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void setPathLabel(String filePath) {
+
         current_label.setText("current: " + filePath);
         current_label.setVisible(true);
         setDataPaneVisibility();
     }
 
     private void setDataPaneVisibility() {
+
         if (playerData != null) {
             data_pane.setDisable(false);
             return;
@@ -143,6 +158,7 @@ public class PlayerDataController {
     }
 
     private void initCBox() {
+
         ctech_cbox.getItems().addAll("breathing_qi", "sensing_qi", "comprehending_qi", "cleansing_meridians",
                 "building_foundation", "core_form", "core_revolution", "merging_with_dao", "comprehending_heavens",
                 "soul_condensation", "comprehending_emotions", "severing_emotions", "cultivating_soul", "emergence",
@@ -159,7 +175,6 @@ public class PlayerDataController {
     }
 
     private void setGuiData() {
-
 
         //region attributes
         Double qiSense = Double.parseDouble(((JSONArray) ((JSONArray) data.get(5)).get(22)).get(0).toString());
@@ -233,23 +248,11 @@ public class PlayerDataController {
         shedding.setText(df2.format(shed));
         returning_to_simplicity.setText(df2.format(return_s));
         //endregion
-    }
 
-    private void readFile() {
-        JSONParser parser = new JSONParser();
-
-        try (Reader reader = new FileReader(playerData.getPath())) {
-
-            JSONObject SaveFile = (JSONObject) parser.parse(reader);
-            System.out.println("save file loaded");
-            data = (JSONArray) SaveFile.get("data");
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     private void saveBaseAttrs() {
+
         //region attributes
         ((JSONArray) ((JSONArray) data.get(5)).get(22)).set(0, Double.valueOf(player_qi_sense.getText()));
         ((JSONArray) ((JSONArray) data.get(6)).get(22)).set(0, Double.valueOf(player_attunement.getText()));
@@ -346,43 +349,6 @@ public class PlayerDataController {
         }
     }
 
-    private void writeFile(boolean isSingular) {
-        JSONObject obj = new JSONObject();
-        obj.put("c2array", true);
-        JSONArray arr = new JSONArray();
-        arr.add(180);
-        arr.add(50);
-        arr.add(1);
-        obj.put("size", arr);
-        obj.put("data", data);
-
-        try (FileWriter file = new FileWriter(App.getFilePath())) {
-            file.write(obj.toJSONString());
-            if (isSingular) {
-                success_msg.setVisible(true);
-            } else {
-                success_msg2.setVisible(true);
-            }
-            successMsgTimer();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    //it will hide the success message after 1 sec
-    private void successMsgTimer() {
-
-        TimerTask task = new TimerTask() {
-            public void run() {
-                success_msg.setVisible(false);
-                success_msg2.setVisible(false);
-            }
-        };
-        Timer timer = new Timer("Timer");
-        timer.schedule(task, 1000L);
-    }
-
     @FXML
     void show_help() {
         help_text_file_open.setVisible(true);
@@ -395,6 +361,7 @@ public class PlayerDataController {
 
     @FXML
     void show_all_techs() {
+
         setGuiData();
         all_ctech.setVisible(true);
         data_pane.setEffect(new GaussianBlur(18.25));
@@ -402,6 +369,7 @@ public class PlayerDataController {
 
     @FXML
     void hide_all_techs() {
+
         onCboxChoice();
         all_ctech.setVisible(false);
         data_pane.setEffect(null);
@@ -409,12 +377,19 @@ public class PlayerDataController {
 
     @FXML
     void open_folder() {
+
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open xsave.dat");
         try {
             playerData = fileChooser.showOpenDialog(App.getStage());
-            App.setFilePath(playerData.getPath());
-            initScreen();
+
+            if (playerData != null) {
+                App.setFilePath(playerData.getPath());
+                initScreen();
+            } else {
+                throw new Exception("no file was picked");
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -422,6 +397,7 @@ public class PlayerDataController {
 
     @FXML
     void save_data() {
+
         saveBaseAttrs();
 
         //region cultivation
@@ -444,11 +420,12 @@ public class PlayerDataController {
         ((JSONArray) ((JSONArray) data.get(17)).get(1)).set(0, Double.valueOf(returning_to_simplicity.getText()));
         //endregion
 
-        writeFile(false);
+        FileManipulation.writeFile(data, false, success_msg, success_msg2);
     }
 
     @FXML
     void save_specific_data() {
+
         saveBaseAttrs();
 
         if (ctech_cbox.getValue() != null) {
@@ -510,7 +487,8 @@ public class PlayerDataController {
                     return;
             }
         }
-        writeFile(true);
+
+        FileManipulation.writeFile(data, true, success_msg, success_msg2);
     }
 
     @FXML
@@ -520,6 +498,7 @@ public class PlayerDataController {
 
     @FXML
     public void back_button_processing() {
+
         Stage stage = App.getStage();
         stage.setScene(BaseController.getScene());
         stage.show();

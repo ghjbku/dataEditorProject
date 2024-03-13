@@ -13,6 +13,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import saveDataEditor.App;
+import saveDataEditor.Data.FileManipulation;
 import saveDataEditor.ItemEntities.ItemEntity;
 import saveDataEditor.ItemEntities.ResourceInformation;
 import saveDataEditor.ItemEntities.SpiritFruitInformation;
@@ -294,38 +295,16 @@ public class PlayerInventoryController {
         }
     }
 
-    private void successMsgTimer() {
-
-        TimerTask task = new TimerTask() {
-            public void run() {
-                success_msg.setVisible(false);
-            }
-        };
-        Timer timer = new Timer("Timer");
-        timer.schedule(task, 1000L);
-    }
-
     /**
      * the method will update the saveFile with the new data
      */
     private void writeFile() {
 
-        JSONObject saveFile = new JSONObject();
-        saveFile.put("c2array", true);
+        try {
+            FileManipulation.writeFile(invSize, data, success_msg);
 
-        JSONArray jsonPrefix = new JSONArray();
-        jsonPrefix.add(invSize);//amount of items in the inventory,needs to be properly calculated
-        jsonPrefix.add(21);//amount of properties per item, always 21
-        jsonPrefix.add(1);//number of rows in the json file, always 1
-        saveFile.put("size", jsonPrefix);
-        saveFile.put("data", data);
-
-        try (FileWriter file = new FileWriter(App.getInventoryFilePath())) {
-            file.write(saveFile.toJSONString());
-            success_msg.setVisible(true);
-            successMsgTimer();
             refreshInventory();
-        } catch (IOException e) {
+        }catch (Exception e){
             e.printStackTrace();
         }
     }

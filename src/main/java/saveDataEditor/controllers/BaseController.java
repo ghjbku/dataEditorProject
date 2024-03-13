@@ -16,7 +16,10 @@ import java.util.Objects;
 
 
 public class BaseController {
-    static Scene thescene;
+    static Scene mainScene;
+    static final int WIDTH = 600;
+    static final int INV_HEIGHT = 513;
+    static final int PLAYERDATA_HEIGHT = 460;
 
     @FXML
     ToolBar first_tab;
@@ -36,23 +39,24 @@ public class BaseController {
     }
 
     private static void setTheScene(Stage stage) {
-        thescene = stage.getScene();
+        mainScene = stage.getScene();
     }
 
     @FXML
     public void open_edit_player_data(){
+
         try{
-            Stage primarystage = App.getStage();
-            setTheScene(primarystage);
+            Stage primaryStage = App.getStage();
+            setTheScene(primaryStage);
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().
                     getResource("player_data_stage.fxml")));
-            primarystage.setScene(new Scene(root, 600, 460));
+            primaryStage.setScene(new Scene(root, WIDTH, PLAYERDATA_HEIGHT));
             Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
-            double x = (bounds.getMaxX() / 2) - 300;
-            double y = (bounds.getMaxY() / 2) - 200;
-            primarystage.setX(x);
-            primarystage.setY(y);
-            primarystage.show();
+            double x = (bounds.getMaxX() / 2) - (int)(WIDTH/2);
+            double y = (bounds.getMaxY() / 2) - (int)(PLAYERDATA_HEIGHT/2);
+            primaryStage.setX(x);
+            primaryStage.setY(y);
+            primaryStage.show();
         }
         catch(Exception e){
             e.printStackTrace();
@@ -61,70 +65,79 @@ public class BaseController {
 
     @FXML
     public void open_edit_player_inventory() throws IOException {
-        Stage primarystage = App.getStage();
-        setTheScene(primarystage);
+
+        Stage primaryStage = App.getStage();
+        setTheScene(primaryStage);
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().
                 getResource("player_inventory_stage.fxml")));
-        primarystage.setScene(new Scene(root, 600, 513));
+        primaryStage.setScene(new Scene(root, WIDTH, INV_HEIGHT));
         Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
-        double x = (bounds.getMaxX() / 2) - 300;
-        double y = (bounds.getMaxY() / 2) - 200;
-        primarystage.setX(x);
-        primarystage.setY(y);
-        primarystage.show();
+        double x = (bounds.getMaxX() / 2) - (int)(WIDTH/2);
+        double y = (bounds.getMaxY() / 2) - (int)(PLAYERDATA_HEIGHT/2);
+        primaryStage.setX(x);
+        primaryStage.setY(y);
+        primaryStage.show();
     }
 
     @FXML
     public void open_edit_player_sect() throws IOException {
-        Stage primarystage = App.getStage();
-        setTheScene(primarystage);
+
+        Stage primaryStage = App.getStage();
+        setTheScene(primaryStage);
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().
                 getResource("player_sect_stage.fxml")));
-        primarystage.setScene(new Scene(root, 600, 400));
+        primaryStage.setScene(new Scene(root, WIDTH, PLAYERDATA_HEIGHT));
         Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
-        double x = (bounds.getMaxX() / 2) - 300;
-        double y = (bounds.getMaxY() / 2) - 200;
-        primarystage.setX(x);
-        primarystage.setY(y);
-        primarystage.show();
+        double x = (bounds.getMaxX() / 2) - (int)(WIDTH/2);
+        double y = (bounds.getMaxY() / 2) - (int)(PLAYERDATA_HEIGHT/2);
+        primaryStage.setX(x);
+        primaryStage.setY(y);
+        primaryStage.show();
     }
 
     @FXML
     public void open_god_realm_editor() throws IOException {
-        Stage primarystage = App.getStage();
-        setTheScene(primarystage);
+
+        Stage primaryStage = App.getStage();
+        setTheScene(primaryStage);
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().
                 getResource("god_realm_stage.fxml")));
-        primarystage.setScene(new Scene(root, 600, 513));
+        primaryStage.setScene(new Scene(root, WIDTH, INV_HEIGHT));
         Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
-        double x = (bounds.getMaxX() / 2) - 300;
-        double y = (bounds.getMaxY() / 2) - 200;
-        primarystage.setX(x);
-        primarystage.setY(y);
-        primarystage.show();
+        double x = (bounds.getMaxX() / 2) - (int)(WIDTH/2);
+        double y = (bounds.getMaxY() / 2) - (int)(PLAYERDATA_HEIGHT/2);
+        primaryStage.setX(x);
+        primaryStage.setY(y);
+        primaryStage.show();
     }
 
     @FXML
     public void next_tab(){
+
         first_tab.setVisible(false);
         second_tab.setVisible(true);
     }
     @FXML
     public void back_to_last_tab(){
+
         first_tab.setVisible(true);
         second_tab.setVisible(false);
     }
 
     @FXML
     public void on_hover_version_num(){
+
         version_pane.setVisible(true);
     }
+
     @FXML
     public void on_exit_version_num(){
+
         version_pane.setVisible(false);
     }
 
     public static Scene getScene() {
-        return thescene;
+
+        return mainScene;
     }
 }

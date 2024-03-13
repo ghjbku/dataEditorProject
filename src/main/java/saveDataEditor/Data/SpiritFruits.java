@@ -1,8 +1,6 @@
 package saveDataEditor.Data;
 
 import saveDataEditor.ItemEntities.SpiritFruitInformation;
-import saveDataEditor.ItemEntities.SpiritFruitInformation;
-
 import java.util.HashMap;
 import java.util.Map;
 

@@ -16,27 +16,27 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class App extends Application {
-    private static Stage primarystage;
+    private static Stage primaryStage;
     private static String filePath;
     private static String inventoryFilePath;
     private static StackableResources stackableResources;
     private static Treasures treasures;
     private static SpiritFruits spiritFruits;
 
-    private void setstage(Stage primaryStage) throws IOException {
+    private void setStage(Stage primaryStage) throws IOException {
         final int app_stage_width = 613;
         final int app_stage_height = 400;
 
-        primarystage = primaryStage;
+        App.primaryStage = primaryStage;
 
         Parent root = FXMLLoader.load(Objects.requireNonNull(this.getClass().getResource("base.fxml")));
-        primarystage.setScene(new Scene(root, app_stage_width, app_stage_height));
+        App.primaryStage.setScene(new Scene(root, app_stage_width, app_stage_height));
         Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
         double x = (bounds.getMaxX() / 2) - 300;
         double y = (bounds.getMaxY() / 2) - 200;
-        primaryStage.setX(x);
-        primaryStage.setY(y);
-        primaryStage.show();
+        App.primaryStage.setX(x);
+        App.primaryStage.setY(y);
+        App.primaryStage.show();
     }
 
     @Override
@@ -45,7 +45,7 @@ public class App extends Application {
         treasures = new Treasures();
         spiritFruits = new SpiritFruits();
         primaryStage.initStyle(StageStyle.UNDECORATED);
-        setstage(primaryStage);
+        setStage(primaryStage);
     }
 
     public static void main(String[] args) {
@@ -53,7 +53,7 @@ public class App extends Application {
     }
 
     public static Stage getStage() {
-        return primarystage;
+        return primaryStage;
     }
 
     public static String getFilePath() {
@@ -72,7 +72,9 @@ public class App extends Application {
         return treasures;
     }
 
-    public static SpiritFruits getSpiritFruits(){return spiritFruits;}
+    public static SpiritFruits getSpiritFruits(){
+        return spiritFruits;
+    }
 
     public static void setFilePath(String path) {
         filePath = path;

@@ -60,11 +60,12 @@ public class GodRealmEditorController {
 
     @FXML
     void initialize() {
+        /*
         String filePath = App.getFilePath();
         if (filePath != null) {
             playerData = new File(filePath);
             initScreen();
-        }
+        }*/
     }
 
     @FXML

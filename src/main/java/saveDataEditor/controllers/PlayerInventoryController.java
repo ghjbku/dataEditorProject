@@ -223,6 +223,17 @@ public class PlayerInventoryController {
         }
     }
 
+    private void refreshInventory(){
+        item_list.getItems().clear();
+        inv_slot_label.setText("slot:");
+        edit_item_id_field.setText("");
+        item_name.setText("name: ");
+        stack_amount.setText("");
+        treasure_quality.setText("");
+        plant_age.setText("");
+        fillInventoryList();
+    }
+
     /**
      * the method will run through the saveFile and fill the scrolling frame called inventoryArray with every item found in the player's inventory
      */
@@ -268,12 +279,6 @@ public class PlayerInventoryController {
                 price = App.getStackableResources().findResource(Math.toIntExact(id)).getPrice();
             }
 
-            System.out.println("id: " + id);
-            System.out.println("amount: " + amount);
-            System.out.println("name: " + name);
-            System.out.println("quality: " + quality);
-            System.out.println("age: " + age);
-
             if (id < 46) {
                 inventoryArray.add(new ResourceInformation(id, name, amount, price));
             } else if (id < 91) {
@@ -317,6 +322,7 @@ public class PlayerInventoryController {
             file.write(saveFile.toJSONString());
             success_msg.setVisible(true);
             successMsgTimer();
+            refreshInventory();
         } catch (IOException e) {
             e.printStackTrace();
         }

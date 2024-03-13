@@ -1,14 +1,15 @@
 package saveDataEditor.ItemEntities;
 
 public class TreasureInformation implements ItemEntity {
-    private long id;
-    private String name;
-    private Double quality;
+    private final long id;
+    private final String name;
+    private final Double quality;
     private Double amount;
-    private Long price;
+    private final Long price;
     private Long age;
 
     public TreasureInformation(long id, String name, Double quality, Double amount, Long price) {
+
         this.id = id;
         this.name = name;
         this.quality = quality;

@@ -1,20 +1,21 @@
 package saveDataEditor.ItemEntities;
 
-public class SpiritFruitInformation implements ItemEntity{
-    private long id;
-    private String name;
+public class SpiritFruitInformation implements ItemEntity {
+    private final long id;
+    private final String name;
     private Double amount;
-    private Long price;
-    private Long age;
-    private Double quality;
+    private final Long price;
+    private final Long age;
+    private final Double quality;
 
     //549-561 last one
-    public SpiritFruitInformation(long id, String name, Long age,Double quality, Long price){
-        this.id=id;
-        this.name=name;
-        this.age=age;
+    public SpiritFruitInformation(long id, String name, Long age, Double quality, Long price) {
+
+        this.id = id;
+        this.name = name;
+        this.age = age;
         this.quality = quality;
-        this.price=price;
+        this.price = price;
     }
 
     public long getId() {

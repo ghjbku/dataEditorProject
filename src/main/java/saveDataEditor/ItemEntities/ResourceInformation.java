@@ -1,18 +1,19 @@
 package saveDataEditor.ItemEntities;
 
-public class ResourceInformation implements ItemEntity{
-    private long id;
-    private String name;
+public class ResourceInformation implements ItemEntity {
+    private final long id;
+    private final String name;
     private Double amount;
-    private Long price;
+    private final Long price;
     private Long age;
     private Double quality;
 
-    public ResourceInformation(long id, String name, Double amount, Long price){
-        this.id=id;
-        this.name=name;
-        this.amount=amount;
-        this.price=price;
+    public ResourceInformation(long id, String name, Double amount, Long price) {
+
+        this.id = id;
+        this.name = name;
+        this.amount = amount;
+        this.price = price;
     }
 
     public long getId() {

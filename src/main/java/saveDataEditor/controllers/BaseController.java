@@ -14,12 +14,17 @@ import saveDataEditor.App;
 import java.io.IOException;
 import java.util.Objects;
 
-
+/**
+*@description controller class for the main window
+* fxml methods are named using lower_snake_case
+* class methods are named using camelCase
+*/
 public class BaseController {
-    static Scene mainScene;
     static final int WIDTH = 600;
     static final int INV_HEIGHT = 513;
     static final int PLAYERDATA_HEIGHT = 460;
+
+    static Scene mainScene;
 
     @FXML
     ToolBar first_tab;
@@ -32,28 +37,44 @@ public class BaseController {
     void initialize() {
     }
 
+    /**
+    * Method to exit the program when the corresponding button is clicked
+    */
     @FXML
     public void exit_button_processing() {
 
         System.exit(0);
     }
 
+    /**
+    * Sets the value of mainScene variable
+    *@param stage the Stage object that contains the Scene we set as value of mainScene
+    */
     private static void setTheScene(Stage stage) {
         mainScene = stage.getScene();
     }
 
+     /**
+    * Method to change the current scene from the main screen into the player-data editing screen
+    */
     @FXML
     public void open_edit_player_data() {
 
         try {
             Stage primaryStage = App.getStage();
             setTheScene(primaryStage);
+            
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().
                     getResource("player_data_stage.fxml")));
+            
+            //set the dimensions of the new scene
             primaryStage.setScene(new Scene(root, WIDTH, PLAYERDATA_HEIGHT));
             Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
+            
+            //set the top left corner of the scene (uniform for all methods)
             double x = (bounds.getMaxX() / 2) - (int) (WIDTH / 2);
             double y = (bounds.getMaxY() / 2) - (int) (PLAYERDATA_HEIGHT / 2);
+            
             primaryStage.setX(x);
             primaryStage.setY(y);
             primaryStage.show();
@@ -62,6 +83,9 @@ public class BaseController {
         }
     }
 
+    /**
+    * Method to change the current scene from the main screen into the player-inventory editing screen
+    */
     @FXML
     public void open_edit_player_inventory() throws IOException {
 
@@ -78,6 +102,9 @@ public class BaseController {
         primaryStage.show();
     }
 
+    /**
+    * Method to change the current scene from the main screen into the player-sect editing screen
+    */
     @FXML
     public void open_edit_player_sect() throws IOException {
 
@@ -94,6 +121,9 @@ public class BaseController {
         primaryStage.show();
     }
 
+    /**
+    * Method to change the current scene from the main screen into the god-realm editing screen
+    */
     @FXML
     public void open_god_realm_editor() throws IOException {
 
@@ -110,6 +140,9 @@ public class BaseController {
         primaryStage.show();
     }
 
+    /**
+    * Method to set the visibility of first and second tabs if the user clicks the corresponding button
+    */
     @FXML
     public void next_tab() {
 
@@ -117,6 +150,9 @@ public class BaseController {
         second_tab.setVisible(true);
     }
 
+    /**
+    * Method to set the visibility of first and second tabs if the user clicks the corresponding button
+    */
     @FXML
     public void back_to_last_tab() {
 
@@ -124,18 +160,27 @@ public class BaseController {
         second_tab.setVisible(false);
     }
 
+    /**
+    * The method will set the version_pane visible when the user hovers over the version numbers
+    */
     @FXML
     public void on_hover_version_num() {
 
         version_pane.setVisible(true);
     }
 
+    /**
+    * The method will set the version_pane back to non-visible when the user is no longer hovering over the version numbers
+    */
     @FXML
     public void on_exit_version_num() {
 
         version_pane.setVisible(false);
     }
 
+    /**
+    * Method to get the current value of mainScene
+    */
     public static Scene getScene() {
 
         return mainScene;

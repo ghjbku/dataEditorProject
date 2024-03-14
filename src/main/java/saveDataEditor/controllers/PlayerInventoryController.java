@@ -19,16 +19,18 @@ import saveDataEditor.ItemEntities.ResourceInformation;
 import saveDataEditor.ItemEntities.SpiritFruitInformation;
 import saveDataEditor.ItemEntities.TreasureInformation;
 
-
-import java.io.*;
+import java.io.File;
+import java.io.FileReader;
+import java.io.Reader;
+import java.text.NumberFormat;
 import java.util.ArrayList;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.Locale;
 
 /**
 *@description Controller class for the player inventory scene
 */
 public class PlayerInventoryController {
+    final NumberFormat nf = NumberFormat.getInstance(Locale.FRANCE);
     JSONArray data = null;
     ArrayList<ItemEntity> inventoryArray = new ArrayList<>();
     long invSize = 0;
@@ -173,28 +175,40 @@ public class PlayerInventoryController {
 
         if (!inv_slot_label.getText().equals("slot:")) {
 
-            System.out.printf("%s , id: %s , %s, amount: %s, quality: %s , age: %s%n",
-                    inv_slot_label.getText().replaceFirst("#", ""), edit_item_id_field.getText(), item_name.getText(), stack_amount.getText(),
-                    treasure_quality.getText(), plant_age.getText());
+            try {
+                System.out.printf("%s , id: %s , %s, amount: %s, quality: %s , age: %s%n",
+                        inv_slot_label.getText().replaceFirst("#", ""), edit_item_id_field.getText(), item_name.getText(), stack_amount.getText(),
+                        treasure_quality.getText(), plant_age.getText());
 
-            int itemId = Integer.parseInt(inv_slot_label.getText().replaceFirst("slot: #", ""));
+                int itemId = Integer.parseInt(inv_slot_label.getText().replaceFirst("slot: #", ""));
 
-            //id
-            ((JSONArray) ((JSONArray) data.get(itemId)).get(0)).set(0, Long.valueOf(edit_item_id_field.getText()));
+                //id
+                ((JSONArray) ((JSONArray) data.get(itemId)).get(0)).set(0, Long.valueOf(edit_item_id_field.getText()));
 
-            if (!stack_amount.getText().equals("null")) {
-                ((JSONArray) ((JSONArray) data.get(itemId)).get(1)).set(0, Double.valueOf(stack_amount.getText()));
+                if (!stack_amount.getText().equals("null")) {
+                    if (App.getUseComma()) {
+                        ((JSONArray) ((JSONArray) data.get(itemId)).get(1)).set(0, nf.parse(stack_amount.getText()).doubleValue());
+                    } else {
+                        ((JSONArray) ((JSONArray) data.get(itemId)).get(1)).set(0, Double.valueOf(stack_amount.getText()));
+                    }
+                }
+
+                if (!plant_age.getText().equals("null")) {
+                    ((JSONArray) ((JSONArray) data.get(itemId)).get(3)).set(0, Long.valueOf(plant_age.getText()));
+                }
+
+                if (!treasure_quality.getText().equals("null")) {
+                    if (App.getUseComma()) {
+                        ((JSONArray) ((JSONArray) data.get(itemId)).get(2)).set(0,  nf.parse(treasure_quality.getText()).doubleValue());
+                    }else{
+                        ((JSONArray) ((JSONArray) data.get(itemId)).get(2)).set(0, Double.valueOf(treasure_quality.getText()));
+                    }
+                }
+
+                writeFile();
+            }catch (Exception e){
+                e.printStackTrace();
             }
-
-            if (!plant_age.getText().equals("null")) {
-                ((JSONArray) ((JSONArray) data.get(itemId)).get(3)).set(0, Long.valueOf(plant_age.getText()));
-            }
-
-            if (!treasure_quality.getText().equals("null")) {
-                ((JSONArray) ((JSONArray) data.get(itemId)).get(2)).set(0, Double.valueOf(treasure_quality.getText()));
-            }
-
-            writeFile();
         }
     }
 

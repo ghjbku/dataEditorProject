@@ -14,7 +14,8 @@ if you dont want to use the bat file, and it does not autolaunch the software wh
 - modify the path so it is jre 1.8
 
 
-current progress (V 1.0.4):
+current progress (V 1.0.5):
+- users now able to use comma as decimal sign instead of dot (have to press the corresponding button in the main menu to switch)
 - added initial tab for god realm
 - Editing player inventory slots (adding new one is not possible yet, only by editing an existing item's id)
 

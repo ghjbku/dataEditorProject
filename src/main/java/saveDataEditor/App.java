@@ -22,6 +22,7 @@ public class App extends Application {
     private static StackableResources stackableResources;
     private static Treasures treasures;
     private static SpiritFruits spiritFruits;
+    private static boolean useComma;
 
     private static final int WIDTH = 600;
     private static final int HEIGHT = 460;
@@ -58,6 +59,16 @@ public class App extends Application {
     public static Stage getStage() {
 
         return primaryStage;
+    }
+
+    public static boolean getUseComma() {
+
+        return useComma;
+    }
+
+    public static void setUseComma(boolean val) {
+
+        useComma = val;
     }
 
     public static String getFilePath() {

@@ -8,16 +8,14 @@ import javafx.scene.effect.GaussianBlur;
 import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import jsonParser.JSONParser;
 import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 import saveDataEditor.App;
 import saveDataEditor.Data.FileManipulation;
 
 import java.io.File;
-import java.io.FileReader;
-import java.io.Reader;
 import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.Locale;
 
 /**
 *@description Controller class for Player Data scene
@@ -29,6 +27,7 @@ public class PlayerDataController {
     File playerData;
     final DecimalFormat df = new DecimalFormat("0.000");
     final DecimalFormat df2 = new DecimalFormat("0");
+    final NumberFormat nf = NumberFormat.getInstance(Locale.FRANCE);
 
     //region basic fxml data
     @FXML
@@ -283,23 +282,48 @@ public class PlayerDataController {
     */
     private void saveBaseAttrs() {
 
-        //region attributes
-        ((JSONArray) ((JSONArray) data.get(5)).get(22)).set(0, Double.valueOf(player_qi_sense.getText()));
-        ((JSONArray) ((JSONArray) data.get(6)).get(22)).set(0, Double.valueOf(player_attunement.getText()));
-        ((JSONArray) ((JSONArray) data.get(7)).get(22)).set(0, Double.valueOf(player_root.getText()));
-        ((JSONArray) ((JSONArray) data.get(8)).get(22)).set(0, Double.valueOf(player_talent.getText()));
-        ((JSONArray) ((JSONArray) data.get(9)).get(22)).set(0, Double.valueOf(player_chance.getText()));
-        ((JSONArray) ((JSONArray) data.get(17)).get(22)).set(0, Double.valueOf(spirit_stones.getText()));
-        //endregion
+        if(App.getUseComma()){
+            try {
+                //region attributes
+                ((JSONArray) ((JSONArray) data.get(5)).get(22)).set(0, nf.parse(player_qi_sense.getText()).doubleValue());
+                ((JSONArray) ((JSONArray) data.get(6)).get(22)).set(0, nf.parse(player_attunement.getText()).doubleValue());
+                ((JSONArray) ((JSONArray) data.get(7)).get(22)).set(0, nf.parse(player_root.getText()).doubleValue());
+                ((JSONArray) ((JSONArray) data.get(8)).get(22)).set(0, nf.parse(player_talent.getText()).doubleValue());
+                ((JSONArray) ((JSONArray) data.get(9)).get(22)).set(0, nf.parse(player_chance.getText()).doubleValue());
+                ((JSONArray) ((JSONArray) data.get(17)).get(22)).set(0, nf.parse(spirit_stones.getText()).doubleValue());
+                //endregion
 
-        //region skills
-        ((JSONArray) ((JSONArray) data.get(23)).get(22)).set(0, Double.valueOf(gathering_level.getText()));
-        ((JSONArray) ((JSONArray) data.get(25)).get(22)).set(0, Double.valueOf(mining_level.getText()));
-        ((JSONArray) ((JSONArray) data.get(29)).get(22)).set(0, Double.valueOf(alchemy_level.getText()));
-        ((JSONArray) ((JSONArray) data.get(27)).get(22)).set(0, Double.valueOf(forging_level.getText()));
-        ((JSONArray) ((JSONArray) data.get(73)).get(22)).set(0, Double.valueOf(planting_level.getText()));
-        ((JSONArray) ((JSONArray) data.get(31)).get(22)).set(0, Double.valueOf(taming_level.getText()));
-        //endregion
+                //region skills
+                ((JSONArray) ((JSONArray) data.get(23)).get(22)).set(0, nf.parse(gathering_level.getText()).doubleValue());
+                ((JSONArray) ((JSONArray) data.get(25)).get(22)).set(0, nf.parse(mining_level.getText()).doubleValue());
+                ((JSONArray) ((JSONArray) data.get(29)).get(22)).set(0, nf.parse(alchemy_level.getText()).doubleValue());
+                ((JSONArray) ((JSONArray) data.get(27)).get(22)).set(0, nf.parse(forging_level.getText()).doubleValue());
+                ((JSONArray) ((JSONArray) data.get(73)).get(22)).set(0, nf.parse(planting_level.getText()).doubleValue());
+                ((JSONArray) ((JSONArray) data.get(31)).get(22)).set(0, nf.parse(taming_level.getText()).doubleValue());
+                //endregion
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+
+        }else {
+            //region attributes
+            ((JSONArray) ((JSONArray) data.get(5)).get(22)).set(0, Double.valueOf(player_qi_sense.getText()));
+            ((JSONArray) ((JSONArray) data.get(6)).get(22)).set(0, Double.valueOf(player_attunement.getText()));
+            ((JSONArray) ((JSONArray) data.get(7)).get(22)).set(0, Double.valueOf(player_root.getText()));
+            ((JSONArray) ((JSONArray) data.get(8)).get(22)).set(0, Double.valueOf(player_talent.getText()));
+            ((JSONArray) ((JSONArray) data.get(9)).get(22)).set(0, Double.valueOf(player_chance.getText()));
+            ((JSONArray) ((JSONArray) data.get(17)).get(22)).set(0, Double.valueOf(spirit_stones.getText()));
+            //endregion
+
+            //region skills
+            ((JSONArray) ((JSONArray) data.get(23)).get(22)).set(0, Double.valueOf(gathering_level.getText()));
+            ((JSONArray) ((JSONArray) data.get(25)).get(22)).set(0, Double.valueOf(mining_level.getText()));
+            ((JSONArray) ((JSONArray) data.get(29)).get(22)).set(0, Double.valueOf(alchemy_level.getText()));
+            ((JSONArray) ((JSONArray) data.get(27)).get(22)).set(0, Double.valueOf(forging_level.getText()));
+            ((JSONArray) ((JSONArray) data.get(73)).get(22)).set(0, Double.valueOf(planting_level.getText()));
+            ((JSONArray) ((JSONArray) data.get(31)).get(22)).set(0, Double.valueOf(taming_level.getText()));
+            //endregion
+        }
     }
 
     /**
@@ -453,26 +477,51 @@ public class PlayerDataController {
 
         saveBaseAttrs();
 
-        //region cultivation
-        ((JSONArray) ((JSONArray) data.get(1)).get(1)).set(0, Double.valueOf(breathing_qi.getText()));
-        ((JSONArray) ((JSONArray) data.get(2)).get(1)).set(0, Double.valueOf(sensing_qi.getText()));
-        ((JSONArray) ((JSONArray) data.get(3)).get(1)).set(0, Double.valueOf(comprehending_qi.getText()));
-        ((JSONArray) ((JSONArray) data.get(4)).get(1)).set(0, Double.valueOf(cleansing_meridians.getText()));
-        ((JSONArray) ((JSONArray) data.get(5)).get(1)).set(0, Double.valueOf(building_foundation.getText()));
-        ((JSONArray) ((JSONArray) data.get(6)).get(1)).set(0, Double.valueOf(core_form.getText()));
-        ((JSONArray) ((JSONArray) data.get(7)).get(1)).set(0, Double.valueOf(core_revolution.getText()));
-        ((JSONArray) ((JSONArray) data.get(8)).get(1)).set(0, Double.valueOf(comprehending_heavens.getText()));
-        ((JSONArray) ((JSONArray) data.get(9)).get(1)).set(0, Double.valueOf(soul_condensation.getText()));
-        ((JSONArray) ((JSONArray) data.get(10)).get(1)).set(0, Double.valueOf(comprehending_emotions.getText()));
-        ((JSONArray) ((JSONArray) data.get(11)).get(1)).set(0, Double.valueOf(severing_emotions.getText()));
-        ((JSONArray) ((JSONArray) data.get(12)).get(1)).set(0, Double.valueOf(cultivating_soul.getText()));
-        ((JSONArray) ((JSONArray) data.get(13)).get(1)).set(0, Double.valueOf(emergence.getText()));
-        ((JSONArray) ((JSONArray) data.get(14)).get(1)).set(0, Double.valueOf(returning_to_emptiness.getText()));
-        ((JSONArray) ((JSONArray) data.get(15)).get(1)).set(0, Double.valueOf(merging_with_dao.getText()));
-        ((JSONArray) ((JSONArray) data.get(16)).get(1)).set(0, Double.valueOf(shedding.getText()));
-        ((JSONArray) ((JSONArray) data.get(17)).get(1)).set(0, Double.valueOf(returning_to_simplicity.getText()));
-        //endregion
-
+        if (App.getUseComma()){
+            try{
+                //region cultivation
+                ((JSONArray) ((JSONArray) data.get(1)).get(1)).set(0, nf.parse(breathing_qi.getText()).doubleValue());
+                ((JSONArray) ((JSONArray) data.get(2)).get(1)).set(0, nf.parse(sensing_qi.getText()).doubleValue());
+                ((JSONArray) ((JSONArray) data.get(3)).get(1)).set(0, nf.parse(comprehending_qi.getText()).doubleValue());
+                ((JSONArray) ((JSONArray) data.get(4)).get(1)).set(0, nf.parse(cleansing_meridians.getText()).doubleValue());
+                ((JSONArray) ((JSONArray) data.get(5)).get(1)).set(0, nf.parse(building_foundation.getText()).doubleValue());
+                ((JSONArray) ((JSONArray) data.get(6)).get(1)).set(0, nf.parse(core_form.getText()).doubleValue());
+                ((JSONArray) ((JSONArray) data.get(7)).get(1)).set(0, nf.parse(core_revolution.getText()).doubleValue());
+                ((JSONArray) ((JSONArray) data.get(8)).get(1)).set(0, nf.parse(comprehending_heavens.getText()).doubleValue());
+                ((JSONArray) ((JSONArray) data.get(9)).get(1)).set(0, nf.parse(soul_condensation.getText()).doubleValue());
+                ((JSONArray) ((JSONArray) data.get(10)).get(1)).set(0, nf.parse(comprehending_emotions.getText()).doubleValue());
+                ((JSONArray) ((JSONArray) data.get(11)).get(1)).set(0, nf.parse(severing_emotions.getText()).doubleValue());
+                ((JSONArray) ((JSONArray) data.get(12)).get(1)).set(0, nf.parse(cultivating_soul.getText()).doubleValue());
+                ((JSONArray) ((JSONArray) data.get(13)).get(1)).set(0, nf.parse(emergence.getText()).doubleValue());
+                ((JSONArray) ((JSONArray) data.get(14)).get(1)).set(0, nf.parse(returning_to_emptiness.getText()).doubleValue());
+                ((JSONArray) ((JSONArray) data.get(15)).get(1)).set(0, nf.parse(merging_with_dao.getText()).doubleValue());
+                ((JSONArray) ((JSONArray) data.get(16)).get(1)).set(0, nf.parse(shedding.getText()).doubleValue());
+                ((JSONArray) ((JSONArray) data.get(17)).get(1)).set(0, nf.parse(returning_to_simplicity.getText()).doubleValue());
+                //endregion
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }else {
+            //region cultivation
+            ((JSONArray) ((JSONArray) data.get(1)).get(1)).set(0, Double.valueOf(breathing_qi.getText()));
+            ((JSONArray) ((JSONArray) data.get(2)).get(1)).set(0, Double.valueOf(sensing_qi.getText()));
+            ((JSONArray) ((JSONArray) data.get(3)).get(1)).set(0, Double.valueOf(comprehending_qi.getText()));
+            ((JSONArray) ((JSONArray) data.get(4)).get(1)).set(0, Double.valueOf(cleansing_meridians.getText()));
+            ((JSONArray) ((JSONArray) data.get(5)).get(1)).set(0, Double.valueOf(building_foundation.getText()));
+            ((JSONArray) ((JSONArray) data.get(6)).get(1)).set(0, Double.valueOf(core_form.getText()));
+            ((JSONArray) ((JSONArray) data.get(7)).get(1)).set(0, Double.valueOf(core_revolution.getText()));
+            ((JSONArray) ((JSONArray) data.get(8)).get(1)).set(0, Double.valueOf(comprehending_heavens.getText()));
+            ((JSONArray) ((JSONArray) data.get(9)).get(1)).set(0, Double.valueOf(soul_condensation.getText()));
+            ((JSONArray) ((JSONArray) data.get(10)).get(1)).set(0, Double.valueOf(comprehending_emotions.getText()));
+            ((JSONArray) ((JSONArray) data.get(11)).get(1)).set(0, Double.valueOf(severing_emotions.getText()));
+            ((JSONArray) ((JSONArray) data.get(12)).get(1)).set(0, Double.valueOf(cultivating_soul.getText()));
+            ((JSONArray) ((JSONArray) data.get(13)).get(1)).set(0, Double.valueOf(emergence.getText()));
+            ((JSONArray) ((JSONArray) data.get(14)).get(1)).set(0, Double.valueOf(returning_to_emptiness.getText()));
+            ((JSONArray) ((JSONArray) data.get(15)).get(1)).set(0, Double.valueOf(merging_with_dao.getText()));
+            ((JSONArray) ((JSONArray) data.get(16)).get(1)).set(0, Double.valueOf(shedding.getText()));
+            ((JSONArray) ((JSONArray) data.get(17)).get(1)).set(0, Double.valueOf(returning_to_simplicity.getText()));
+            //endregion
+        }
         FileManipulation.writeFile(data, false, success_msg, success_msg2);
     }
 
@@ -486,61 +535,124 @@ public class PlayerDataController {
 
         if (ctech_cbox.getValue() != null) {
 
-            switch (ctech_cbox.getValue()) {
-                case "breathing_qi":
-                    ((JSONArray) ((JSONArray) data.get(1)).get(1)).set(0, Double.valueOf(cbox_data.getText()));
-                    break;
-                case "sensing_qi":
-                    ((JSONArray) ((JSONArray) data.get(2)).get(1)).set(0, Double.valueOf(cbox_data.getText()));
-                    break;
-                case "comprehending_qi":
-                    ((JSONArray) ((JSONArray) data.get(3)).get(1)).set(0, Double.valueOf(cbox_data.getText()));
-                    break;
-                case "cleansing_meridians":
-                    ((JSONArray) ((JSONArray) data.get(4)).get(1)).set(0, Double.valueOf(cbox_data.getText()));
-                    break;
-                case "building_foundation":
-                    ((JSONArray) ((JSONArray) data.get(5)).get(1)).set(0, Double.valueOf(cbox_data.getText()));
-                    break;
-                case "core_form":
-                    ((JSONArray) ((JSONArray) data.get(6)).get(1)).set(0, Double.valueOf(cbox_data.getText()));
-                    break;
-                case "core_revolution":
-                    ((JSONArray) ((JSONArray) data.get(7)).get(1)).set(0, Double.valueOf(cbox_data.getText()));
-                    break;
-                case "comprehending_heavens":
-                    ((JSONArray) ((JSONArray) data.get(8)).get(1)).set(0, Double.valueOf(cbox_data.getText()));
-                    break;
-                case "soul_condensation":
-                    ((JSONArray) ((JSONArray) data.get(9)).get(1)).set(0, Double.valueOf(cbox_data.getText()));
-                    break;
-                case "comprehending_emotions":
-                    ((JSONArray) ((JSONArray) data.get(10)).get(1)).set(0, Double.valueOf(cbox_data.getText()));
-                    break;
-                case "severing_emotions":
-                    ((JSONArray) ((JSONArray) data.get(11)).get(1)).set(0, Double.valueOf(cbox_data.getText()));
-                    break;
-                case "cultivating_soul":
-                    ((JSONArray) ((JSONArray) data.get(12)).get(1)).set(0, Double.valueOf(cbox_data.getText()));
-                    break;
-                case "emergence":
-                    ((JSONArray) ((JSONArray) data.get(13)).get(1)).set(0, Double.valueOf(cbox_data.getText()));
-                    break;
-                case "returning_to_emptiness":
-                    ((JSONArray) ((JSONArray) data.get(14)).get(1)).set(0, Double.valueOf(cbox_data.getText()));
-                    break;
-                case "merging_with_dao":
-                    ((JSONArray) ((JSONArray) data.get(15)).get(1)).set(0, Double.valueOf(cbox_data.getText()));
-                    break;
-                case "shedding":
-                    ((JSONArray) ((JSONArray) data.get(16)).get(1)).set(0, Double.valueOf(cbox_data.getText()));
-                    break;
-                case "returning_to_simplicity":
-                    ((JSONArray) ((JSONArray) data.get(17)).get(1)).set(0, Double.valueOf(cbox_data.getText()));
-                    break;
-                default:
-                    System.out.println("there is no such cultivation tech");
-                    return;
+            if (App.getUseComma()) {
+                try {
+                    switch (ctech_cbox.getValue()) {
+                        case "breathing_qi":
+                            ((JSONArray) ((JSONArray) data.get(1)).get(1)).set(0, nf.parse(cbox_data.getText()).doubleValue());
+                            break;
+                        case "sensing_qi":
+                            ((JSONArray) ((JSONArray) data.get(2)).get(1)).set(0, nf.parse(cbox_data.getText()).doubleValue());
+                            break;
+                        case "comprehending_qi":
+                            ((JSONArray) ((JSONArray) data.get(3)).get(1)).set(0, nf.parse(cbox_data.getText()).doubleValue());
+                            break;
+                        case "cleansing_meridians":
+                            ((JSONArray) ((JSONArray) data.get(4)).get(1)).set(0, nf.parse(cbox_data.getText()).doubleValue());
+                            break;
+                        case "building_foundation":
+                            ((JSONArray) ((JSONArray) data.get(5)).get(1)).set(0, nf.parse(cbox_data.getText()).doubleValue());
+                            break;
+                        case "core_form":
+                            ((JSONArray) ((JSONArray) data.get(6)).get(1)).set(0, nf.parse(cbox_data.getText()).doubleValue());
+                            break;
+                        case "core_revolution":
+                            ((JSONArray) ((JSONArray) data.get(7)).get(1)).set(0, nf.parse(cbox_data.getText()).doubleValue());
+                            break;
+                        case "comprehending_heavens":
+                            ((JSONArray) ((JSONArray) data.get(8)).get(1)).set(0, nf.parse(cbox_data.getText()).doubleValue());
+                            break;
+                        case "soul_condensation":
+                            ((JSONArray) ((JSONArray) data.get(9)).get(1)).set(0, nf.parse(cbox_data.getText()).doubleValue());
+                            break;
+                        case "comprehending_emotions":
+                            ((JSONArray) ((JSONArray) data.get(10)).get(1)).set(0, nf.parse(cbox_data.getText()).doubleValue());
+                            break;
+                        case "severing_emotions":
+                            ((JSONArray) ((JSONArray) data.get(11)).get(1)).set(0, nf.parse(cbox_data.getText()).doubleValue());
+                            break;
+                        case "cultivating_soul":
+                            ((JSONArray) ((JSONArray) data.get(12)).get(1)).set(0, nf.parse(cbox_data.getText()).doubleValue());
+                            break;
+                        case "emergence":
+                            ((JSONArray) ((JSONArray) data.get(13)).get(1)).set(0, nf.parse(cbox_data.getText()).doubleValue());
+                            break;
+                        case "returning_to_emptiness":
+                            ((JSONArray) ((JSONArray) data.get(14)).get(1)).set(0, nf.parse(cbox_data.getText()).doubleValue());
+                            break;
+                        case "merging_with_dao":
+                            ((JSONArray) ((JSONArray) data.get(15)).get(1)).set(0, nf.parse(cbox_data.getText()).doubleValue());
+                            break;
+                        case "shedding":
+                            ((JSONArray) ((JSONArray) data.get(16)).get(1)).set(0, nf.parse(cbox_data.getText()).doubleValue());
+                            break;
+                        case "returning_to_simplicity":
+                            ((JSONArray) ((JSONArray) data.get(17)).get(1)).set(0, nf.parse(cbox_data.getText()).doubleValue());
+                            break;
+                        default:
+                            System.out.println("there is no such cultivation tech");
+                            return;
+                    }
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }else{
+                switch (ctech_cbox.getValue()) {
+                    case "breathing_qi":
+                        ((JSONArray) ((JSONArray) data.get(1)).get(1)).set(0, Double.valueOf(cbox_data.getText()));
+                        break;
+                    case "sensing_qi":
+                        ((JSONArray) ((JSONArray) data.get(2)).get(1)).set(0, Double.valueOf(cbox_data.getText()));
+                        break;
+                    case "comprehending_qi":
+                        ((JSONArray) ((JSONArray) data.get(3)).get(1)).set(0, Double.valueOf(cbox_data.getText()));
+                        break;
+                    case "cleansing_meridians":
+                        ((JSONArray) ((JSONArray) data.get(4)).get(1)).set(0, Double.valueOf(cbox_data.getText()));
+                        break;
+                    case "building_foundation":
+                        ((JSONArray) ((JSONArray) data.get(5)).get(1)).set(0, Double.valueOf(cbox_data.getText()));
+                        break;
+                    case "core_form":
+                        ((JSONArray) ((JSONArray) data.get(6)).get(1)).set(0, Double.valueOf(cbox_data.getText()));
+                        break;
+                    case "core_revolution":
+                        ((JSONArray) ((JSONArray) data.get(7)).get(1)).set(0, Double.valueOf(cbox_data.getText()));
+                        break;
+                    case "comprehending_heavens":
+                        ((JSONArray) ((JSONArray) data.get(8)).get(1)).set(0, Double.valueOf(cbox_data.getText()));
+                        break;
+                    case "soul_condensation":
+                        ((JSONArray) ((JSONArray) data.get(9)).get(1)).set(0, Double.valueOf(cbox_data.getText()));
+                        break;
+                    case "comprehending_emotions":
+                        ((JSONArray) ((JSONArray) data.get(10)).get(1)).set(0, Double.valueOf(cbox_data.getText()));
+                        break;
+                    case "severing_emotions":
+                        ((JSONArray) ((JSONArray) data.get(11)).get(1)).set(0, Double.valueOf(cbox_data.getText()));
+                        break;
+                    case "cultivating_soul":
+                        ((JSONArray) ((JSONArray) data.get(12)).get(1)).set(0, Double.valueOf(cbox_data.getText()));
+                        break;
+                    case "emergence":
+                        ((JSONArray) ((JSONArray) data.get(13)).get(1)).set(0, Double.valueOf(cbox_data.getText()));
+                        break;
+                    case "returning_to_emptiness":
+                        ((JSONArray) ((JSONArray) data.get(14)).get(1)).set(0, Double.valueOf(cbox_data.getText()));
+                        break;
+                    case "merging_with_dao":
+                        ((JSONArray) ((JSONArray) data.get(15)).get(1)).set(0, Double.valueOf(cbox_data.getText()));
+                        break;
+                    case "shedding":
+                        ((JSONArray) ((JSONArray) data.get(16)).get(1)).set(0, Double.valueOf(cbox_data.getText()));
+                        break;
+                    case "returning_to_simplicity":
+                        ((JSONArray) ((JSONArray) data.get(17)).get(1)).set(0, Double.valueOf(cbox_data.getText()));
+                        break;
+                    default:
+                        System.out.println("there is no such cultivation tech");
+                        return;
+                }
             }
         }
 

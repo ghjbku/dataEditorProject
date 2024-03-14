@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ToolBar;
 import javafx.scene.layout.Pane;
 import javafx.stage.Screen;
@@ -32,6 +33,21 @@ public class BaseController {
     ToolBar second_tab;
     @FXML
     Pane version_pane;
+    @FXML
+    Button comma_button;
+
+    @FXML
+    public void on_comma_click() {
+        if (App.getUseComma()){
+            App.setUseComma(false);
+            comma_button.setText("Click to use Comma");
+            comma_button.setStyle("");
+        }else{
+            App.setUseComma(true);
+            comma_button.setText("now using Comma");
+            comma_button.setStyle("-fx-background-color: #90EE90");
+        }
+    }
 
     @FXML
     void initialize() {

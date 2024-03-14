@@ -19,6 +19,11 @@ import java.io.FileReader;
 import java.io.Reader;
 import java.text.DecimalFormat;
 
+/**
+*@description Controller class for Player Data scene
+* fxml methods and variables are named using lower_snake_case
+* class methods and variables are named using camelCase
+*/
 public class PlayerDataController {
     JSONArray data = null;
     File playerData;
@@ -113,6 +118,11 @@ public class PlayerDataController {
     TextField returning_to_simplicity;
     //endregion
 
+    /**
+    * Init method to fetch the filepath, and set the screen data if the path exists
+    * The method is used when the user already visited this scene, but went back to the main scene for some reason
+    * The method will run <b>after the fxml variables are created, hence better to use than a class constructor, as a constructor would not see the fxml fields</b>
+    */
     @FXML
     void initialize() {
 
@@ -123,6 +133,9 @@ public class PlayerDataController {
         }
     }
 
+     /**
+    * The method will read the saveFile that the user has picked, and if the read was successful it will set the data for the screen components
+    */
     private void initScreen() {
 
         try {
@@ -141,6 +154,10 @@ public class PlayerDataController {
         }
     }
 
+    /**
+    * Will set the value of current_label to be the filePath given as parameter
+    *@param filePath the path to the saveFile
+    */
     private void setPathLabel(String filePath) {
 
         current_label.setText("current: " + filePath);
@@ -148,6 +165,9 @@ public class PlayerDataController {
         setDataPaneVisibility();
     }
 
+    /**
+    * The method will check if the saveFile is successfully read, and if so it will enable the screen components, otherwise it will disable them
+    */
     private void setDataPaneVisibility() {
 
         if (playerData != null) {
@@ -157,6 +177,10 @@ public class PlayerDataController {
         data_pane.setDisable(true);
     }
 
+    /**
+    * Method to initialize the choicebox and set a default value to be the first item
+    * will also set a listener to run the onCboxChoice method when a value is selected
+    */
     private void initCBox() {
 
         ctech_cbox.getItems().addAll("breathing_qi", "sensing_qi", "comprehending_qi", "cleansing_meridians",
@@ -174,6 +198,9 @@ public class PlayerDataController {
         );
     }
 
+    /**
+    * The method will fetch the data from the saveFile and fill the screen components with the corresponding values
+    */
     private void setGuiData() {
 
         //region attributes
@@ -251,6 +278,9 @@ public class PlayerDataController {
 
     }
 
+    /**
+    * The method will fetch the data from the screen components and overwrite the corresponding array field in the data variable (used as an intermediary to edit the save file)
+    */
     private void saveBaseAttrs() {
 
         //region attributes
@@ -272,6 +302,10 @@ public class PlayerDataController {
         //endregion
     }
 
+    /**
+    * Method that will run when the user selects an item from the choicebox
+    * It will initialize the cbox_data textField with the value from the data variable
+    */
     private void onCboxChoice() {
 
         Object breathing = ((JSONArray) ((JSONArray) data.get(1)).get(1)).get(0);
@@ -349,16 +383,25 @@ public class PlayerDataController {
         }
     }
 
+    /**
+    * The method will display an example path to the user when they hover over the file opening button
+    */
     @FXML
     void show_help() {
         help_text_file_open.setVisible(true);
     }
 
+    /**
+    * The method will hide the example path when the user is no longer hovering over the file opening button
+    */
     @FXML
     void disable_help() {
         help_text_file_open.setVisible(false);
     }
 
+    /**
+    * The method will hide the choicebox and instead show every cultivationTechnique screen component so the user can modify multiple values at the same time
+    */
     @FXML
     void show_all_techs() {
 
@@ -367,6 +410,9 @@ public class PlayerDataController {
         data_pane.setEffect(new GaussianBlur(18.25));
     }
 
+    /**
+    * The method will hide all cultivation technique screen components and instead show the choicebox for more simplicity
+    */
     @FXML
     void hide_all_techs() {
 
@@ -375,6 +421,10 @@ public class PlayerDataController {
         data_pane.setEffect(null);
     }
 
+    /**
+    * The method will open a fileChooser window for the user, where they can select a saveFile
+    * if the file is successfully selected, we init the screen, otherwise we thrown an exception
+    */
     @FXML
     void open_folder() {
 
@@ -395,6 +445,9 @@ public class PlayerDataController {
         }
     }
 
+    /**
+    * Method to fetch all data from the screen and save it into the corresponding field in the data variable
+    */
     @FXML
     void save_data() {
 
@@ -423,6 +476,9 @@ public class PlayerDataController {
         FileManipulation.writeFile(data, false, success_msg, success_msg2);
     }
 
+    /**
+    * Method to fetch all base attributes and the selected value from the choicebox and save the new values into the data variable
+    */
     @FXML
     void save_specific_data() {
 
@@ -491,11 +547,17 @@ public class PlayerDataController {
         FileManipulation.writeFile(data, true, success_msg, success_msg2);
     }
 
+    /**
+    * Method to stop the program when the user clicks the exit button
+    */
     @FXML
     public void exit_button_processing() {
         System.exit(0);
     }
 
+    /**
+    * Method to close the current scene and open the main menu scene
+    */
     @FXML
     public void back_button_processing() {
 

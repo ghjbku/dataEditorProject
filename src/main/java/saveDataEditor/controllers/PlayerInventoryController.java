@@ -40,6 +40,8 @@ public class PlayerInventoryController {
     @FXML
     Label help_text_file_open;
     @FXML
+    Label comma_text;
+    @FXML
     Label current_path_label;
     @FXML
     Label current_size_label;
@@ -77,6 +79,7 @@ public class PlayerInventoryController {
     @FXML
     void initialize() {
 
+        comma_text.setVisible(App.getUseComma());
         String filePath = App.getInventoryFilePath();
 
         if (!(filePath == null)) {

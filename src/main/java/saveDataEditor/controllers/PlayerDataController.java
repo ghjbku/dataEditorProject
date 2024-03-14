@@ -31,6 +31,8 @@ public class PlayerDataController {
 
     //region basic fxml data
     @FXML
+    Label comma_text;
+    @FXML
     Label help_text_file_open;
     @FXML
     Label current_label;
@@ -124,6 +126,8 @@ public class PlayerDataController {
     */
     @FXML
     void initialize() {
+
+        comma_text.setVisible(App.getUseComma());
 
         String filePath = App.getFilePath();
         if (filePath != null) {

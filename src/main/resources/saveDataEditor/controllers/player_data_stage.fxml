@@ -106,4 +106,5 @@
       <Button layoutX="275.0" layoutY="186.0" mnemonicParsing="false" onAction="#hide_all_techs" text="show dropdown" />
    </Pane>
    <Label fx:id="current_label" layoutX="131.0" layoutY="9.0" prefHeight="37.0" prefWidth="304.0" text="current:" visible="false" wrapText="true" />
+   <Label fx:id="comma_text" alignment="CENTER" layoutX="14.0" prefHeight="17.0" prefWidth="95.0" text="using comma" textFill="#01bc3c" />
 </AnchorPane>

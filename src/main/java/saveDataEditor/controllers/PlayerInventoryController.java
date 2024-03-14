@@ -25,6 +25,9 @@ import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
+/**
+*@description Controller class for the player inventory scene
+*/
 public class PlayerInventoryController {
     JSONArray data = null;
     ArrayList<ItemEntity> inventoryArray = new ArrayList<>();
@@ -80,6 +83,9 @@ public class PlayerInventoryController {
         }
     }
 
+    /**
+    * Method to stop the program when the user clicks the exit button
+    */
     @FXML
     public void exit_button_processing() {
 
@@ -106,6 +112,9 @@ public class PlayerInventoryController {
         help_text_file_open.setVisible(true);
     }
 
+    /**
+     * Will hide the help text when the user is no longer hovering over the fileChooser button
+     */
     @FXML
     void disable_help() {
 
@@ -189,13 +198,19 @@ public class PlayerInventoryController {
         }
     }
 
+    /**
+    * Initialization wrapper method to init the screen components
+    */
     private void initScreen() {
 
         setPathLabel(playerData.getPath());
         readFile();
         fillInventoryList();
     }
-
+    /**
+    * Set the file path label with the value of the given parameter
+    *@param filePath current path of the saveFile
+    */
     private void setPathLabel(String filePath) {
 
         current_path_label.setText("current: " + filePath);
@@ -203,7 +218,7 @@ public class PlayerInventoryController {
     }
 
     /**
-     * the method will read the data from the saveFile and initialize the variables:
+     * The method will read the data from the saveFile and initialize the variables:
      *
      * @invSize how many items are in the player inventory
      * @data the data of all items in the inventory
@@ -226,6 +241,9 @@ public class PlayerInventoryController {
         }
     }
 
+    /**
+     * The method will clear the screen components and re-fill the inventory list
+     */
     private void refreshInventory() {
         item_list.getItems().clear();
         inv_slot_label.setText("slot:");
@@ -238,7 +256,7 @@ public class PlayerInventoryController {
     }
 
     /**
-     * the method will run through the saveFile and fill the scrolling frame called inventoryArray with every item found in the player's inventory
+     * The method will run through the saveFile and fill the scrolling frame called inventoryArray with every item found in the player's inventory
      */
     private void fillInventoryList() {
 
@@ -247,6 +265,7 @@ public class PlayerInventoryController {
             Object amountToConvert = ((JSONArray) ((JSONArray) data.get(i)).get(1)).get(0);
             double amount = 0d;
 
+            //will convert the item amount to double based on its current type
             if (amountToConvert.getClass().getName().contains("Long")) {
                 amount = ((Long) amountToConvert).doubleValue();
             } else if (amountToConvert.getClass().getName().contains("Double")) {
@@ -258,6 +277,7 @@ public class PlayerInventoryController {
             String name;
             long price;
 
+            //get the name of the current item based on it's id
             if (App.getStackableResources().findResource(Math.toIntExact(id)) != null) {
                 name = App.getStackableResources().findResource(Math.toIntExact(id)).getName();
             } else if (App.getTreasures().findResource(Math.toIntExact(id)) != null) {
@@ -268,6 +288,7 @@ public class PlayerInventoryController {
                 name = "item not in database yet";
             }
 
+            //get the price of the current item based on it's id
             if (App.getStackableResources().findResource(Math.toIntExact(id)) == null) {
                 if (App.getTreasures().findResource(Math.toIntExact(id)) == null) {
                     if (App.getSpiritFruits().findResource(Math.toIntExact(id)) == null) {
@@ -282,6 +303,7 @@ public class PlayerInventoryController {
                 price = App.getStackableResources().findResource(Math.toIntExact(id)).getPrice();
             }
 
+            //add the current item into the inventory based on it's id
             if (id < 46) {
                 inventoryArray.add(new ResourceInformation(id, name, amount, price));
             } else if (id < 91) {
@@ -296,7 +318,7 @@ public class PlayerInventoryController {
     }
 
     /**
-     * the method will update the saveFile with the new data
+     * The method will update the saveFile with the new data
      */
     private void writeFile() {
 
